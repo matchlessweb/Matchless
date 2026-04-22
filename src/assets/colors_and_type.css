@@ -1,0 +1,504 @@
+/* =============================================================
+   Matchless Web — Core Tokens
+   Colors, Typography, Spacing, Radii, Shadows
+   ============================================================= */
+
+/* ---------- Fonts ----------
+   - Brand / logo wordmark: Syne (700)           — logo lockup ONLY, not used elsewhere in UI
+   - Display headlines:     Inter Tight (600/700) — neutral grotesk, tightened for headlines
+   - Body / UI:             Inter (400–600)      — same superfamily, quieter weights
+   - Mono:                  JetBrains Mono
+
+   Syne is self-hosted (variable font) from assets/fonts/.
+   Inter, Inter Tight, JetBrains Mono still load from Google Fonts
+   until their files are uploaded — then swap those @imports for
+   @font-face blocks following the Syne pattern below.
+*/
+@font-face {
+  font-family: 'Syne';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('fonts/Syne-VariableFont_wght.ttf') format('truetype-variations'),
+       url('fonts/Syne-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter Tight';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/InterTight-VariableFont_wght.ttf') format('truetype-variations'),
+       url('fonts/InterTight-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype-variations'),
+       url('fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype-variations'),
+       url('fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype');
+}
+
+:root {
+  /* ========== COLOR — Brand ========== */
+  --mw-green-500:   #49BB94;  /* Primary — Matchless Mint */
+  --mw-green-600:   #34A57E;  /* Hover / pressed */
+  --mw-green-700:   #218766;  /* Deep emerald */
+  --mw-green-400:   #6BCAA8;  /* Light accent */
+  --mw-green-200:   #C7EBDC;  /* Tint — chips, highlights */
+  --mw-green-100:   #E4F5EE;  /* Surface tint */
+  --mw-green-50:    #F2FAF6;  /* Page wash */
+
+  /* Supporting brand (analogous + complementary) */
+  --mw-ink:         #0F1A16;  /* Near-black, green-tinted */
+  --mw-ink-2:       #1C2A24;  /* Secondary ink */
+  --mw-sunlit:      #F6E9C1;  /* Warm highlight — rare, editorial */
+  --mw-coral:       #E8684A;  /* Alert / secondary accent */
+
+  /* ========== COLOR — Neutrals ========== */
+  --mw-white:       #FFFFFF;
+  --mw-paper:       #FAFAF7;  /* Off-white page background */
+  --mw-canvas:      #F3F2ED;  /* Secondary surface */
+  --mw-stone-100:   #EDECE6;
+  --mw-stone-200:   #DDDBD3;
+  --mw-stone-300:   #C6C3B8;
+  --mw-stone-400:   #9A968A;
+  --mw-stone-500:   #6E6B62;
+  --mw-stone-600:   #4A4842;
+  --mw-stone-700:   #2E2D29;
+  --mw-black:       #0A0A09;
+
+  /* ========== COLOR — Semantic (foreground / background / border) ========== */
+  --fg-1:           var(--mw-ink);        /* Primary text */
+  --fg-2:           var(--mw-stone-600);  /* Secondary text */
+  --fg-3:           var(--mw-stone-500);  /* Tertiary / meta */
+  --fg-4:           var(--mw-stone-400);  /* Placeholder / disabled */
+  --fg-on-brand:    #FFFFFF;              /* Text on green primary */
+  --fg-on-dark:     #FAFAF7;              /* Text on ink */
+
+  --bg-1:           var(--mw-paper);      /* Page */
+  --bg-2:           var(--mw-white);      /* Card / elevated */
+  --bg-3:           var(--mw-canvas);     /* Sunken / recessed */
+  --bg-brand:       var(--mw-green-500);
+  --bg-brand-soft:  var(--mw-green-100);
+  --bg-ink:         var(--mw-ink);
+
+  --border-1:       rgba(15, 26, 22, 0.08);  /* Default hairline */
+  --border-2:       rgba(15, 26, 22, 0.14);  /* Emphasised */
+  --border-3:       rgba(15, 26, 22, 0.22);  /* Field border */
+  --border-brand:   var(--mw-green-500);
+  --border-on-dark: rgba(255, 255, 255, 0.10);
+
+  /* Status */
+  --status-success: #49BB94;
+  --status-warning: #E7B34A;
+  --status-danger:  #D8563E;
+  --status-info:    #4A7FD8;
+
+  /* ========== TYPOGRAPHY — Families ========== */
+  --font-sans:    'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+  --font-display: 'Inter Tight', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-brand:   'Syne', 'Inter Tight', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  /* Back-compat alias: --font-serif still referenced by a few older files — point it at display. */
+  --font-serif:   var(--font-display);
+
+  /* ========== TYPOGRAPHY — Scale ========== */
+  --text-xs:    12px;
+  --text-sm:    14px;
+  --text-base:  16px;
+  --text-md:    18px;
+  --text-lg:    20px;
+  --text-xl:    24px;
+  --text-2xl:   32px;
+  --text-3xl:   44px;
+  --text-4xl:   60px;
+  --text-5xl:   84px;
+  --text-6xl:   120px;
+
+  --lh-tight:   1.02;
+  --lh-snug:    1.15;
+  --lh-body:    1.55;
+  --lh-relaxed: 1.7;
+
+  --tracking-tight:   -0.02em;
+  --tracking-snug:    -0.01em;
+  --tracking-normal:   0;
+  --tracking-wide:     0.04em;
+  --tracking-overline: 0.12em;
+
+  /* ========== SPACING — 4px base ========== */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 56px;
+  --space-10: 72px;
+  --space-11: 96px;
+  --space-12: 128px;
+
+  /* ========== RADII ========== */
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   20px;
+  --radius-2xl:  28px;
+  --radius-pill: 999px;
+
+  /* ========== SHADOWS / ELEVATION ========== */
+  --shadow-0: none;
+  --shadow-1: 0 1px 2px rgba(15, 26, 22, 0.04), 0 1px 1px rgba(15, 26, 22, 0.03);
+  --shadow-2: 0 2px 6px rgba(15, 26, 22, 0.06), 0 1px 2px rgba(15, 26, 22, 0.04);
+  --shadow-3: 0 8px 24px rgba(15, 26, 22, 0.08), 0 2px 6px rgba(15, 26, 22, 0.05);
+  --shadow-4: 0 24px 60px rgba(15, 26, 22, 0.14), 0 8px 16px rgba(15, 26, 22, 0.06);
+  /* Brand-tinted glow — used sparingly on CTA hover or feature cards */
+  --shadow-glow: 0 0 0 4px rgba(73, 187, 148, 0.18), 0 12px 30px rgba(73, 187, 148, 0.22);
+  /* Inset for sunken/recessed surfaces */
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 0 0 1px rgba(15, 26, 22, 0.05);
+
+  /* ========== MOTION ========== */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast:    140ms;
+  --dur-base:    220ms;
+  --dur-slow:    420ms;
+
+  /* ========== LAYOUT ========== */
+  --container-narrow: 720px;
+  --container-base:   1120px;
+  --container-wide:   1320px;
+}
+
+/* =============================================================
+   DARK THEME — Option A · Near-black ink (green-tinted)
+   ------------------------------------------------------------
+   Activates when:
+     • <html data-theme="dark">  ← manual override, persists via JS
+     • (prefers-color-scheme: dark) AND no data-theme attribute
+   Only semantic tokens are overridden. Raw brand/scale palettes
+   (mw-green-*, mw-stone-*) stay constant — they're the palette,
+   not the theme. The SEMANTIC layer is what re-maps.
+   ============================================================= */
+
+:root[data-theme="dark"] {
+  /* Dark-mode promoted greens — mint needs to lighten for WCAG AA on ink */
+  --bg-brand:       var(--mw-green-400);   /* #6BCAA8 — primary action in dark */
+  --bg-brand-soft:  rgba(107, 202, 168, 0.12);
+  --border-brand:   var(--mw-green-400);
+
+  /* Foreground */
+  --fg-1:           #F0ECE4;               /* Primary text — warm off-white */
+  --fg-2:           #B8B5AC;               /* Secondary */
+  --fg-3:           #8A867C;               /* Tertiary / meta */
+  --fg-4:           #5C5A53;               /* Placeholder / disabled */
+  --fg-on-brand:    #0F1A16;               /* Ink on mint button */
+  --fg-on-dark:     #F0ECE4;               /* (no-op in dark mode, kept for parity) */
+
+  /* Background surfaces — rising elevation = lighter */
+  --bg-1:           #0F1A16;               /* Page — near-black ink */
+  --bg-2:           #18231E;               /* Card / elevated */
+  --bg-3:           #1F2A25;               /* Sunken / recessed, chips */
+  --bg-ink:         #0A0F0D;               /* Deepest surface — hero, footer */
+
+  /* Borders — hairlines read as light-alpha on dark */
+  --border-1:       rgba(255, 255, 255, 0.08);
+  --border-2:       rgba(255, 255, 255, 0.14);
+  --border-3:       rgba(255, 255, 255, 0.22);
+  --border-on-dark: rgba(255, 255, 255, 0.10);
+
+  /* Status — brighter tints for dark bg */
+  --status-success: #6BCAA8;
+  --status-warning: #F1C56A;
+  --status-danger:  #E87863;
+  --status-info:    #7FA8EA;
+
+  /* Shadows — traditional drop shadows disappear on dark; replace with
+     deeper ambient + a top highlight to simulate elevation. */
+  --shadow-0: none;
+  --shadow-1: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 2px 8px rgba(0, 0, 0, 0.5);
+  --shadow-3: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 8px 24px rgba(0, 0, 0, 0.55);
+  --shadow-4: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 24px 60px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 0 4px rgba(107, 202, 168, 0.22), 0 12px 30px rgba(107, 202, 168, 0.18);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Auto dark mode — only when no explicit data-theme is set.
+   If the user/system toggles data-theme="light" or "dark", that wins. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg-brand:       var(--mw-green-400);
+    --bg-brand-soft:  rgba(107, 202, 168, 0.12);
+    --border-brand:   var(--mw-green-400);
+
+    --fg-1: #F0ECE4;  --fg-2: #B8B5AC;  --fg-3: #8A867C;  --fg-4: #5C5A53;
+    --fg-on-brand: #0F1A16;  --fg-on-dark: #F0ECE4;
+
+    --bg-1: #0F1A16;  --bg-2: #18231E;  --bg-3: #1F2A25;  --bg-ink: #0A0F0D;
+
+    --border-1: rgba(255,255,255,0.08);
+    --border-2: rgba(255,255,255,0.14);
+    --border-3: rgba(255,255,255,0.22);
+    --border-on-dark: rgba(255,255,255,0.10);
+
+    --status-success: #6BCAA8;  --status-warning: #F1C56A;
+    --status-danger:  #E87863;  --status-info:    #7FA8EA;
+
+    --shadow-1: 0 1px 0 rgba(255,255,255,0.04) inset, 0 1px 2px rgba(0,0,0,0.4);
+    --shadow-2: 0 1px 0 rgba(255,255,255,0.05) inset, 0 2px 8px rgba(0,0,0,0.5);
+    --shadow-3: 0 1px 0 rgba(255,255,255,0.06) inset, 0 8px 24px rgba(0,0,0,0.55);
+    --shadow-4: 0 1px 0 rgba(255,255,255,0.08) inset, 0 24px 60px rgba(0,0,0,0.7);
+    --shadow-glow: 0 0 0 4px rgba(107,202,168,0.22), 0 12px 30px rgba(107,202,168,0.18);
+    --shadow-inset: inset 0 1px 0 rgba(255,255,255,0.06), inset 0 0 0 1px rgba(255,255,255,0.05);
+  }
+}
+
+/* When an element explicitly sits on an already-dark/ink background
+   (e.g. a hero <section class="mw-ink-surface">), force dark tokens locally
+   regardless of page theme. Useful for light-mode pages with a dark section. */
+.mw-ink-surface {
+  --fg-1: #F0ECE4; --fg-2: #B8B5AC; --fg-3: #8A867C;
+  --bg-1: #0F1A16; --bg-2: #18231E; --bg-3: #1F2A25;
+  --border-1: rgba(255,255,255,0.08);
+  --border-2: rgba(255,255,255,0.14);
+  --bg-brand-soft: rgba(107, 202, 168, 0.12);
+  color: var(--fg-1);
+  background: var(--bg-1);
+}
+
+/* =============================================================
+   DARK-MODE HOVER GLOWS
+   ------------------------------------------------------------
+   On dark backgrounds, traditional drop-shadows read as black
+   holes. Instead, hover states radiate a soft green glow outward
+   from the element and lift the border toward brand-green. These
+   rules trigger automatically in either dark activation mode
+   (data-theme="dark" OR prefers-color-scheme on unset).
+
+   Scope is any hoverable primitive the UI kit exposes:
+     .mw-btn, .mw-service-card, .mw-link,
+     .mw-cta-form input:focus, .mw-footer-col a,
+     plus a generic opt-in class: .mw-hoverable
+   ============================================================= */
+
+/* Expose glow as tokens so components can tweak intensity without
+   rewriting shadows. Light-mode values are no-ops (transparent). */
+:root {
+  --glow-color:        transparent;
+  --glow-soft:         none;
+  --glow-medium:       none;
+  --glow-strong:       none;
+  --glow-ring:         none;
+  --glow-border-hover: var(--border-2);
+}
+
+:root[data-theme="dark"],
+.mw-ink-surface {
+  --glow-color:        rgba(107, 202, 168, 0.55);
+  --glow-soft:         0 0 0 1px rgba(107,202,168,0.12), 0 6px 24px -8px rgba(107,202,168,0.35);
+  --glow-medium:       0 0 0 1px rgba(107,202,168,0.25), 0 10px 32px -10px rgba(107,202,168,0.55), 0 2px 8px rgba(0,0,0,0.4);
+  --glow-strong:       0 0 0 1px rgba(107,202,168,0.4), 0 0 28px rgba(107,202,168,0.35), 0 16px 40px -12px rgba(107,202,168,0.6);
+  --glow-ring:         0 0 0 3px rgba(107,202,168,0.28);
+  --glow-border-hover: rgba(107,202,168,0.45);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --glow-color:        rgba(107, 202, 168, 0.55);
+    --glow-soft:         0 0 0 1px rgba(107,202,168,0.12), 0 6px 24px -8px rgba(107,202,168,0.35);
+    --glow-medium:       0 0 0 1px rgba(107,202,168,0.25), 0 10px 32px -10px rgba(107,202,168,0.55), 0 2px 8px rgba(0,0,0,0.4);
+    --glow-strong:       0 0 0 1px rgba(107,202,168,0.4), 0 0 28px rgba(107,202,168,0.35), 0 16px 40px -12px rgba(107,202,168,0.6);
+    --glow-ring:         0 0 0 3px rgba(107,202,168,0.28);
+    --glow-border-hover: rgba(107,202,168,0.45);
+  }
+}
+
+/* Generic hoverable surface — cards, tiles, any component that should
+   lift + glow on hover. Opt-in class. */
+.mw-hoverable {
+  transition: box-shadow .22s var(--ease-out),
+              border-color .22s var(--ease-out),
+              transform .22s var(--ease-out);
+}
+.mw-hoverable:hover {
+  box-shadow: var(--glow-medium, var(--shadow-3));
+  border-color: var(--glow-border-hover);
+  transform: translateY(-2px);
+}
+
+/* Dark-mode hover patches for UI-kit components. These live here (not
+   in the UI-kit CSS) because they're themed behaviour, not layout.
+   Media-query + attribute selectors both covered. */
+:root[data-theme="dark"] .mw-btn-primary:hover,
+:root[data-theme="dark"] .mw-btn-ink:hover,
+.mw-ink-surface .mw-btn-primary:hover,
+.mw-ink-surface .mw-btn-ink:hover {
+  box-shadow: var(--glow-strong);
+}
+:root[data-theme="dark"] .mw-btn-ghost:hover,
+.mw-ink-surface .mw-btn-ghost:hover {
+  box-shadow: var(--glow-soft);
+  border-color: var(--glow-border-hover);
+}
+:root[data-theme="dark"] .mw-service-card:hover,
+.mw-ink-surface .mw-service-card:hover {
+  box-shadow: var(--glow-medium);
+  border-color: var(--glow-border-hover);
+}
+:root[data-theme="dark"] .mw-link:hover,
+.mw-ink-surface .mw-link:hover {
+  color: var(--mw-green-400);
+  text-shadow: 0 0 12px rgba(107,202,168,0.4);
+}
+:root[data-theme="dark"] .mw-cta-form input:focus,
+.mw-ink-surface .mw-cta-form input:focus {
+  box-shadow: var(--glow-ring);
+}
+:root[data-theme="dark"] .mw-footer-col a:hover,
+.mw-ink-surface .mw-footer-col a:hover {
+  text-shadow: 0 0 10px rgba(107,202,168,0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .mw-btn-primary:hover,
+  :root:not([data-theme]) .mw-btn-ink:hover { box-shadow: var(--glow-strong); }
+  :root:not([data-theme]) .mw-btn-ghost:hover { box-shadow: var(--glow-soft); border-color: var(--glow-border-hover); }
+  :root:not([data-theme]) .mw-service-card:hover { box-shadow: var(--glow-medium); border-color: var(--glow-border-hover); }
+  :root:not([data-theme]) .mw-link:hover { color: var(--mw-green-400); text-shadow: 0 0 12px rgba(107,202,168,0.4); }
+  :root:not([data-theme]) .mw-cta-form input:focus { box-shadow: var(--glow-ring); }
+  :root:not([data-theme]) .mw-footer-col a:hover { text-shadow: 0 0 10px rgba(107,202,168,0.35); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mw-hoverable { transition: none; }
+  .mw-hoverable:hover { transform: none; }
+}
+
+/* =============================================================
+   Semantic typography classes
+   ============================================================= */
+
+.mw-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(52px, 8vw, var(--text-6xl));
+  line-height: var(--lh-tight);
+  letter-spacing: -0.03em;
+  color: var(--fg-1);
+}
+/* Legacy <em>/<i> spans inside display type — render as brand-green emphasis instead of italic. */
+.mw-display em, .mw-display i { font-style: normal; font-weight: 700; color: var(--mw-green-600); }
+.mw-display--accent { color: var(--mw-green-600); }
+
+.mw-h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(40px, 6vw, var(--text-5xl));
+  line-height: var(--lh-tight);
+  letter-spacing: -0.025em;
+  color: var(--fg-1);
+}
+.mw-h1 em, .mw-h1 i { font-style: normal; font-weight: 700; color: var(--mw-green-600); }
+
+.mw-h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(32px, 4vw, var(--text-4xl));
+  line-height: var(--lh-snug);
+  letter-spacing: -0.022em;
+  color: var(--fg-1);
+}
+.mw-h2 em, .mw-h2 i { font-style: normal; font-weight: 700; color: var(--mw-green-600); }
+
+.mw-h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-2xl);
+  line-height: var(--lh-snug);
+  letter-spacing: -0.018em;
+  color: var(--fg-1);
+}
+
+.mw-h4 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--text-xl);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-snug);
+  color: var(--fg-1);
+}
+
+.mw-eyebrow {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--text-xs);
+  line-height: 1;
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--mw-green-700);
+}
+
+.mw-lead {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--text-lg);
+  line-height: var(--lh-body);
+  color: var(--fg-2);
+}
+
+.mw-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--text-base);
+  line-height: var(--lh-body);
+  color: var(--fg-1);
+}
+
+.mw-body-sm {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--text-sm);
+  line-height: var(--lh-body);
+  color: var(--fg-2);
+}
+
+.mw-caption {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--text-xs);
+  line-height: var(--lh-body);
+  color: var(--fg-3);
+}
+
+.mw-label {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  line-height: 1.2;
+  color: var(--fg-1);
+}
+
+.mw-code {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.92em;
+  letter-spacing: -0.01em;
+  color: var(--fg-1);
+  background: var(--bg-3);
+  border-radius: var(--radius-xs);
+  padding: 0.1em 0.35em;
+}

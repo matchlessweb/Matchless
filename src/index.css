@@ -1,0 +1,18 @@
+@import './assets/colors_and_type.css';
+@import './styles/hero.css';
+@import './styles/sections.css';
+@import './styles/contact.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* Ensure body occupies full height */
+html, body {
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--mw-ink);
+  color: var(--fg-1);
+}

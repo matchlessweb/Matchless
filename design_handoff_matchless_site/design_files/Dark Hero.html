@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Matchless — Systems that scale revenue</title>
+  <link rel="stylesheet" href="assets/colors_and_type.css" />
+  <link rel="stylesheet" href="hero.css?v=20" />
+  <link rel="stylesheet" href="sections.css?v=3" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- Tweakable defaults -->
+  <script>
+    window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
+      "accentWord": "scale",
+      "headlineLine1": "Systems",
+      "headlineLine2": "that {accent}",
+      "headlineLine3": "revenue.",
+      "gridDensity": "medium",
+      "showGlow": true,
+      "activeTab": "BUILD"
+    }/*EDITMODE-END*/;
+  </script>
+
+  <!-- Load Sections BEFORE main App so components are defined -->
+  <script type="text/babel" data-presets="react" src="Sections.jsx?v=1"></script>
+
+  <script type="text/babel" data-presets="react">
+  const T = window.__TWEAKS__;
+  const { useState, useEffect } = React;
+
+  // -------- Icons (inline SVG, matching Lucide feel) --------
+  const Icon = {
+    Bolt: (p) => (
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+      </svg>
+    ),
+    ArrowRight: (p) => (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <path d="M5 12h14M13 5l7 7-7 7"/>
+      </svg>
+    ),
+    Download: (p) => (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+      </svg>
+    ),
+    Sparkles: (p) => (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <path d="M12 3l1.9 4.7L18.5 9l-4.6 1.9L12 15l-1.9-4.1L5.5 9l4.6-1.3z"/>
+        <path d="M19 15l.9 2 2.1.6-2.1.6L19 20l-.9-1.8L16 17.6l2.1-.6z"/>
+      </svg>
+    ),
+    Star: (p) => (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="1" {...p}>
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21 12 17.77 5.82 21 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+    ),
+    ChevronDown: (p) => (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    ),
+    Globe: (p) => (
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/>
+      </svg>
+    ),
+    Layers: (p) => (
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+      </svg>
+    ),
+    Search: (p) => (
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>
+      </svg>
+    ),
+    Users: (p) => (
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+    ),
+  };
+
+  // -------- Brand mark (lightning bolt matching Matchless logo) --------
+  const BrandMark = ({ size = 22, color = "#49BB94" }) => (
+    <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
+      <polygon points="17 4 4 19 15 19 14 30 27 15 15 15 17 4"
+               fill="none" stroke={color} strokeWidth="1.9"
+               strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+  window.BrandMark = BrandMark;
+
+  // -------- Placeholder avatars (abstract portraits in warm tones) --------
+  const AvatarA = () => (
+    <svg viewBox="0 0 68 68"><defs><linearGradient id="avA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stopColor="#E89568"/><stop offset="1" stopColor="#B35F3F"/></linearGradient></defs>
+      <rect width="68" height="68" fill="url(#avA)"/>
+      <circle cx="34" cy="27" r="11" fill="#f3d9c4"/>
+      <ellipse cx="34" cy="60" rx="22" ry="18" fill="#f3d9c4"/>
+      <path d="M23 20 Q34 6 46 20 Q46 26 40 24 Q34 18 28 24 Q22 26 23 20Z" fill="#3A2418"/>
+    </svg>
+  );
+  const AvatarB = () => (
+    <svg viewBox="0 0 68 68"><defs><linearGradient id="avB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stopColor="#5A7A8C"/><stop offset="1" stopColor="#2F4454"/></linearGradient></defs>
+      <rect width="68" height="68" fill="url(#avB)"/>
+      <circle cx="34" cy="28" r="11" fill="#e8cdb0"/>
+      <ellipse cx="34" cy="62" rx="22" ry="18" fill="#3A3A42"/>
+      <path d="M24 22 Q34 10 44 22 L44 28 L24 28Z" fill="#2A2520"/>
+      <rect x="26" y="26" width="16" height="5" rx="2" fill="#1C2023"/>
+    </svg>
+  );
+  const AvatarC = () => (
+    <svg viewBox="0 0 68 68"><defs><linearGradient id="avC" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stopColor="#C9B79A"/><stop offset="1" stopColor="#8F7A5E"/></linearGradient></defs>
+      <rect width="68" height="68" fill="url(#avC)"/>
+      <circle cx="34" cy="27" r="11" fill="#f1d6b8"/>
+      <ellipse cx="34" cy="62" rx="22" ry="18" fill="#E8E3DC"/>
+      <path d="M22 24 Q34 8 46 24 Q48 34 42 34 L42 22 L26 22 L26 34 Q20 34 22 24Z" fill="#5B2E1F"/>
+    </svg>
+  );
+  const AvatarProof = () => (
+    <svg viewBox="0 0 44 44"><defs><linearGradient id="avP" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stopColor="#6B4A32"/><stop offset="1" stopColor="#3A2618"/></linearGradient></defs>
+      <rect width="44" height="44" fill="url(#avP)"/>
+      <circle cx="22" cy="18" r="7" fill="#C08B5F"/>
+      <ellipse cx="22" cy="40" rx="14" ry="12" fill="#2A1E14"/>
+      <path d="M15 14 Q22 6 29 14 L29 18 L15 18Z" fill="#1A1008"/>
+    </svg>
+  );
+
+  // -------- Nav --------
+  function Nav() {
+    return (
+      <header className="nav">
+        <div className="nav-inner">
+          <a href="#" className="brand brand--lg" aria-label="Matchless">
+            <BrandMark size={32}/>
+            <span className="brand-word">MATCHLESS</span>
+          </a>
+          <nav className="nav-links">
+            <a href="#solutions">Solutions</a>
+            <a href="#process">Process</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#cases">Case Studies</a>
+          </nav>
+          <div className="nav-right">
+            <a href="#login" className="client-login">Client Login</a>
+            <a href="Contact.html" className="btn btn-ink btn-sm">Book a Call</a>
+          </div>
+        </div>
+      </header>
+    );
+  }
+
+  // -------- Panel (right-side chat-style card) --------
+  function Panel() {
+    const [tab, setTab] = useState(T.activeTab || "BUILD");
+    const tabs = ["STRATEGY", "BUILD", "DEPLOY"];
+
+    const prompts = {
+      STRATEGY: { q: "Where should we focus to win?", chips: [
+        {icon: <Icon.Download/>, label: "Market Audit"},
+        {icon: <Icon.Sparkles/>, label: "Positioning"}
+      ]},
+      BUILD: { q: "How can we scale your revenue?", chips: [
+        {icon: <Icon.Download/>, label: "Funnel Architecture"},
+        {icon: <Icon.Sparkles/>, label: "SEO Mastery"}
+      ]},
+      DEPLOY: { q: "What ships in the first 30 days?", chips: [
+        {icon: <Icon.Download/>, label: "Launch Plan"},
+        {icon: <Icon.Sparkles/>, label: "Analytics Setup"}
+      ]},
+    };
+    const current = prompts[tab];
+
+    const services = [
+      { label: "WEB", icon: <Icon.Globe/> },
+      { label: "CMS", icon: <Icon.Layers/> },
+      { label: "SEO", icon: <Icon.Search/> },
+      { label: "CRM", icon: <Icon.Users/> },
+    ];
+
+    return (
+      <div className="panel">
+        <div className="panel-avatars">
+          <div className="panel-avatar"><AvatarA/></div>
+          <div className="panel-avatar"><AvatarB/></div>
+          <div className="panel-avatar"><AvatarC/></div>
+        </div>
+        <div className="panel-tabs" role="tablist">
+          {tabs.map(t => (
+            <button key={t} className={`panel-tab ${tab === t ? 'active' : ''}`} onClick={() => setTab(t)} role="tab" aria-selected={tab === t}>
+              {t}
+            </button>
+          ))}
+        </div>
+        <div className="panel-prompt">
+          <div className="prompt-text">{current.q}</div>
+          <div className="prompt-chips">
+            {current.chips.map((c, i) => (
+              <button key={i} className="prompt-chip">{c.icon}{c.label}</button>
+            ))}
+          </div>
+        </div>
+        <div className="panel-services">
+          {services.map(s => (
+            <div key={s.label} className="service-pill">
+              <span className="service-dot">{s.icon}</span>
+              <span className="service-label">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // -------- Hero --------
+  function Hero() {
+    // Render headline lines, replacing {accent} with the accent span.
+    const renderLine = (tpl) => {
+      const parts = tpl.split(/(\{accent\})/g);
+      return parts.map((p, i) => p === "{accent}"
+        ? <span key={i} className="accent">{T.accentWord}</span>
+        : <React.Fragment key={i}>{p}</React.Fragment>
+      );
+    };
+
+    return (
+      <section className="hero-wrap">
+        <div className="hero">
+          <div className="hero-grid">
+            <div className="hero-left">
+              <div className="hero-eyebrow">
+                <span className="hero-eyebrow-text">Client Acquisition Systems</span>
+                <span className="hero-eyebrow-divider"/>
+                <a href="#cases" className="hero-eyebrow-link">Read our case studies</a>
+              </div>
+
+              <h1 className="hero-title">
+                {renderLine(T.headlineLine1)}<br/>
+                {renderLine(T.headlineLine2)}<br/>
+                {renderLine(T.headlineLine3)}
+              </h1>
+
+              <p className="hero-sub">
+                Deep insights, creative velocity, and full execution.<br/>
+                All powered by engineered web architectures.
+              </p>
+
+              <div className="hero-divider"/>
+
+              <div className="hero-proof">
+                <div style={{display:'flex', alignItems:'center', gap:14}}>
+                  <span className="proof-avatar"><AvatarProof/></span>
+                  <span className="proof-text">
+                    <div className="proof-title">200% Growth on Average</div>
+                    <div className="proof-sub">B2B &amp; Agencies</div>
+                  </span>
+                </div>
+                <div className="proof-rating">
+                  <Icon.Star/> 4.9
+                </div>
+              </div>
+
+              <div className="hero-actions">
+                <a href="#start" className="btn btn-primary btn-lg">
+                  Start the protocol
+                  <span className="btn-arrow"><Icon.ArrowRight/></span>
+                </a>
+                <a href="#solutions" className="btn btn-ghost btn-lg">Explore Solutions</a>
+              </div>
+            </div>
+
+            <div className="hero-right">
+              <Panel/>
+            </div>
+          </div>
+
+          <div className="hero-scroll" aria-hidden="true">
+            <Icon.ChevronDown/>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // -------- Tweaks panel (dev-only controls) --------
+  function TweaksPanel({ open }) {
+    const [vals, setVals] = useState(T);
+    const update = (key, val) => {
+      const next = { ...vals, [key]: val };
+      setVals(next);
+      window.__TWEAKS__[key] = val;
+      window.parent && window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [key]: val } }, '*');
+      // Re-render
+      window.__rerender && window.__rerender();
+    };
+    return (
+      <div className={`tweaks ${open ? 'open' : ''}`}>
+        <h4>Tweaks</h4>
+        <div className="tweak-row">
+          <label>Accent word</label>
+          <input type="text" value={vals.accentWord} onChange={e => update('accentWord', e.target.value)}/>
+        </div>
+        <div className="tweak-row">
+          <label>Active tab</label>
+          <select value={vals.activeTab} onChange={e => update('activeTab', e.target.value)}>
+            <option>STRATEGY</option><option>BUILD</option><option>DEPLOY</option>
+          </select>
+        </div>
+        <div className="tweak-row">
+          <label>Line 1</label>
+          <input type="text" value={vals.headlineLine1} onChange={e => update('headlineLine1', e.target.value)}/>
+        </div>
+        <div className="tweak-row">
+          <label>Line 2</label>
+          <input type="text" value={vals.headlineLine2} onChange={e => update('headlineLine2', e.target.value)}/>
+        </div>
+        <div className="tweak-row">
+          <label>Line 3</label>
+          <input type="text" value={vals.headlineLine3} onChange={e => update('headlineLine3', e.target.value)}/>
+        </div>
+      </div>
+    );
+  }
+
+  // -------- App --------
+  function App() {
+    const [tweaksOpen, setTweaksOpen] = useState(false);
+
+    useEffect(() => {
+      const handler = (e) => {
+        if (!e.data || typeof e.data !== 'object') return;
+        if (e.data.type === '__activate_edit_mode') setTweaksOpen(true);
+        if (e.data.type === '__deactivate_edit_mode') setTweaksOpen(false);
+      };
+      window.addEventListener('message', handler);
+      window.parent && window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+      return () => window.removeEventListener('message', handler);
+    }, []);
+
+    return (
+      <div className="page mw-ink-surface">
+        <div className="ribbons" aria-hidden="true">
+          <svg viewBox="0 0 1440 3000" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="rb-1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stopColor="#8EDDBD" stopOpacity="0"/>
+                <stop offset="0.1" stopColor="#8EDDBD" stopOpacity="0.98"/>
+                <stop offset="0.5" stopColor="#49BB94" stopOpacity="1"/>
+                <stop offset="0.9" stopColor="#218766" stopOpacity="0.8"/>
+                <stop offset="1" stopColor="#218766" stopOpacity="0"/>
+              </linearGradient>
+              <linearGradient id="rb-2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stopColor="#49BB94" stopOpacity="0"/>
+                <stop offset="0.15" stopColor="#49BB94" stopOpacity="0.95"/>
+                <stop offset="0.55" stopColor="#34A57E" stopOpacity="0.98"/>
+                <stop offset="0.95" stopColor="#6BCAA8" stopOpacity="0.8"/>
+                <stop offset="1" stopColor="#6BCAA8" stopOpacity="0"/>
+              </linearGradient>
+              <linearGradient id="rb-3" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stopColor="#218766" stopOpacity="0"/>
+                <stop offset="0.2" stopColor="#218766" stopOpacity="0.92"/>
+                <stop offset="0.6" stopColor="#49BB94" stopOpacity="0.95"/>
+                <stop offset="1" stopColor="#8EDDBD" stopOpacity="0"/>
+              </linearGradient>
+              <linearGradient id="rb-4" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stopColor="#6BCAA8" stopOpacity="0"/>
+                <stop offset="0.15" stopColor="#6BCAA8" stopOpacity="0.88"/>
+                <stop offset="0.5" stopColor="#49BB94" stopOpacity="0.98"/>
+                <stop offset="0.85" stopColor="#34A57E" stopOpacity="0.8"/>
+                <stop offset="1" stopColor="#34A57E" stopOpacity="0"/>
+              </linearGradient>
+              <linearGradient id="rb-5" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stopColor="#8EDDBD" stopOpacity="0"/>
+                <stop offset="0.2" stopColor="#8EDDBD" stopOpacity="0.95"/>
+                <stop offset="0.6" stopColor="#6BCAA8" stopOpacity="0.92"/>
+                <stop offset="1" stopColor="#49BB94" stopOpacity="0"/>
+              </linearGradient>
+              <filter id="rb-halo" x="-10%" y="-5%" width="120%" height="110%">
+                <feGaussianBlur stdDeviation="3"/>
+              </filter>
+            </defs>
+
+            <g>
+            <g className="braid">
+              <g filter="url(#rb-halo)">
+                <path className="rpath rpath-1" d="M 200.0 -50 C 200.0 170.0, 1118.2 130.0, 1118.2 350 C 1118.2 570.0, 217.6 530.0, 217.6 750 C 217.6 970.0, 1189.5 930.0, 1189.5 1150 C 1189.5 1370.0, 262.0 1330.0, 262.0 1550 C 262.0 1770.0, 1228.3 1730.0, 1228.3 1950 C 1228.3 2170.0, 237.6 2130.0, 237.6 2350 C 237.6 2570.0, 1093.7 2530.0, 1093.7 2750 C 1093.7 2970.0, 373.5 2930.0, 373.5 3150" stroke="url(#rb-1)" strokeWidth="13" opacity="0.42"/>
+                <path className="rpath rpath-2" d="M 228.5 -50 C 228.5 170.0, 1078.8 130.0, 1078.8 350 C 1078.8 570.0, 259.3 530.0, 259.3 750 C 259.3 970.0, 1154.7 930.0, 1154.7 1150 C 1154.7 1370.0, 282.4 1330.0, 282.4 1550 C 282.4 1770.0, 1226.7 1730.0, 1226.7 1950 C 1226.7 2170.0, 220.0 2130.0, 220.0 2350 C 220.0 2570.0, 1126.7 2530.0, 1126.7 2750 C 1126.7 2970.0, 332.4 2930.0, 332.4 3150" stroke="url(#rb-3)" strokeWidth="9" opacity="0.42"/>
+                <path className="rpath rpath-3" d="M 212.9 -50 C 212.9 170.0, 1080.4 130.0, 1080.4 350 C 1080.4 570.0, 272.0 530.0, 272.0 750 C 272.0 970.0, 1130.4 930.0, 1130.4 1150 C 1130.4 1370.0, 312.9 1330.0, 312.9 1550 C 312.9 1770.0, 1196.6 1730.0, 1196.6 1950 C 1196.6 2170.0, 243.2 2130.0, 243.2 2350 C 243.2 2570.0, 1115.6 2530.0, 1115.6 2750 C 1115.6 2970.0, 329.1 2930.0, 329.1 3150" stroke="url(#rb-2)" strokeWidth="16" opacity="0.42"/>
+                <path className="rpath rpath-4" d="M 182.4 -50 C 182.4 170.0, 1104.7 130.0, 1104.7 350 C 1104.7 570.0, 259.3 530.0, 259.3 750 C 259.3 970.0, 1128.8 930.0, 1128.8 1150 C 1128.8 1370.0, 328.5 1330.0, 328.5 1550 C 328.5 1770.0, 1170.4 1730.0, 1170.4 1950 C 1170.4 2170.0, 274.3 2130.0, 274.3 2350 C 274.3 2570.0, 1086.4 2530.0, 1086.4 2750 C 1086.4 2970.0, 350.0 2930.0, 350.0 3150" stroke="url(#rb-4)" strokeWidth="9" opacity="0.42"/>
+                <path className="rpath rpath-5" d="M 162.0 -50 C 162.0 170.0, 1139.5 130.0, 1139.5 350 C 1139.5 570.0, 217.6 530.0, 217.6 750 C 217.6 970.0, 1168.2 930.0, 1168.2 1150 C 1168.2 1370.0, 300.0 1330.0, 300.0 1550 C 300.0 1770.0, 1181.8 1730.0, 1181.8 1950 C 1181.8 2170.0, 282.4 2130.0, 282.4 2350 C 282.4 2570.0, 1060.5 2530.0, 1060.5 2750 C 1060.5 2970.0, 388.0 2930.0, 388.0 3150" stroke="url(#rb-5)" strokeWidth="7" opacity="0.42"/>
+              </g>
+              <g>
+                <path className="rpath rpath-1" d="M 200.0 -50 C 200.0 170.0, 1118.2 130.0, 1118.2 350 C 1118.2 570.0, 217.6 530.0, 217.6 750 C 217.6 970.0, 1189.5 930.0, 1189.5 1150 C 1189.5 1370.0, 262.0 1330.0, 262.0 1550 C 262.0 1770.0, 1228.3 1730.0, 1228.3 1950 C 1228.3 2170.0, 237.6 2130.0, 237.6 2350 C 237.6 2570.0, 1093.7 2530.0, 1093.7 2750 C 1093.7 2970.0, 373.5 2930.0, 373.5 3150" stroke="url(#rb-1)" strokeWidth="2.2" opacity="1"/>
+                <path className="rpath rpath-2" d="M 228.5 -50 C 228.5 170.0, 1078.8 130.0, 1078.8 350 C 1078.8 570.0, 259.3 530.0, 259.3 750 C 259.3 970.0, 1154.7 930.0, 1154.7 1150 C 1154.7 1370.0, 282.4 1330.0, 282.4 1550 C 282.4 1770.0, 1226.7 1730.0, 1226.7 1950 C 1226.7 2170.0, 220.0 2130.0, 220.0 2350 C 220.0 2570.0, 1126.7 2530.0, 1126.7 2750 C 1126.7 2970.0, 332.4 2930.0, 332.4 3150" stroke="url(#rb-3)" strokeWidth="1.6" opacity="1"/>
+                <path className="rpath rpath-3" d="M 212.9 -50 C 212.9 170.0, 1080.4 130.0, 1080.4 350 C 1080.4 570.0, 272.0 530.0, 272.0 750 C 272.0 970.0, 1130.4 930.0, 1130.4 1150 C 1130.4 1370.0, 312.9 1330.0, 312.9 1550 C 312.9 1770.0, 1196.6 1730.0, 1196.6 1950 C 1196.6 2170.0, 243.2 2130.0, 243.2 2350 C 243.2 2570.0, 1115.6 2530.0, 1115.6 2750 C 1115.6 2970.0, 329.1 2930.0, 329.1 3150" stroke="url(#rb-2)" strokeWidth="2.6" opacity="1"/>
+                <path className="rpath rpath-4" d="M 182.4 -50 C 182.4 170.0, 1104.7 130.0, 1104.7 350 C 1104.7 570.0, 259.3 530.0, 259.3 750 C 259.3 970.0, 1128.8 930.0, 1128.8 1150 C 1128.8 1370.0, 328.5 1330.0, 328.5 1550 C 328.5 1770.0, 1170.4 1730.0, 1170.4 1950 C 1170.4 2170.0, 274.3 2130.0, 274.3 2350 C 274.3 2570.0, 1086.4 2530.0, 1086.4 2750 C 1086.4 2970.0, 350.0 2930.0, 350.0 3150" stroke="url(#rb-4)" strokeWidth="1.6" opacity="1"/>
+                <path className="rpath rpath-5" d="M 162.0 -50 C 162.0 170.0, 1139.5 130.0, 1139.5 350 C 1139.5 570.0, 217.6 530.0, 217.6 750 C 217.6 970.0, 1168.2 930.0, 1168.2 1150 C 1168.2 1370.0, 300.0 1330.0, 300.0 1550 C 300.0 1770.0, 1181.8 1730.0, 1181.8 1950 C 1181.8 2170.0, 282.4 2130.0, 282.4 2350 C 282.4 2570.0, 1060.5 2530.0, 1060.5 2750 C 1060.5 2970.0, 388.0 2930.0, 388.0 3150" stroke="url(#rb-5)" strokeWidth="1.4" opacity="1"/>
+              </g>
+            </g>
+          </g>
+          </svg>
+          <div className="ribbons-veil"></div>
+        </div>
+        <Nav/>
+        <Hero/>
+        <Problem/>
+        <Guide/>
+        <Plan/>
+        <Services/>
+        <Stakes/>
+        <Testimonials/>
+        <FAQ/>
+        <FinalCTA/>
+        <Footer/>
+        <TweaksPanel open={tweaksOpen}/>
+      </div>
+    );
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  const render = () => root.render(<App/>);
+  window.__rerender = render;
+  render();
+  </script>
+</body>
+</html>

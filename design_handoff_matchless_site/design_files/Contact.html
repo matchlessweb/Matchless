@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Matchless</title>
+  <link rel="stylesheet" href="assets/colors_and_type.css" />
+  <link rel="stylesheet" href="hero.css?v=20" />
+  <link rel="stylesheet" href="sections.css?v=3" />
+  <link rel="stylesheet" href="contact.css?v=1" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- Load shared sections (exposes Footer, etc globally) -->
+  <script type="text/babel" data-presets="react" src="Sections.jsx?v=1"></script>
+
+  <script type="text/babel" data-presets="react">
+  const { useState } = React;
+
+  // -------- Brand mark (lightning bolt matching Matchless logo) --------
+  const BrandMark = ({ size = 22, color = "#49BB94" }) => (
+    <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
+      <polygon points="17 4 4 19 15 19 14 30 27 15 15 15 17 4"
+               fill="none" stroke={color} strokeWidth="1.9"
+               strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+  window.BrandMark = BrandMark;
+
+  // -------- Icons --------
+  const Icon = {
+    ArrowRight: (p) => (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <path d="M5 12h14M13 5l7 7-7 7"/>
+      </svg>
+    ),
+    Mail: (p) => (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>
+      </svg>
+    ),
+    Phone: (p) => (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.84.59 2.8.72A2 2 0 0 1 22 16.92z"/>
+      </svg>
+    ),
+    Calendar: (p) => (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+      </svg>
+    ),
+    Clock: (p) => (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+      </svg>
+    ),
+    MapPin: (p) => (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+      </svg>
+    ),
+    Check: (p) => (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <path d="M20 6L9 17l-5-5"/>
+      </svg>
+    ),
+    Shield: (p) => (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+    ),
+  };
+
+  // -------- Nav --------
+  function Nav() {
+    return (
+      <header className="nav">
+        <div className="nav-inner">
+          <a href="Dark Hero.html" className="brand brand--lg" aria-label="Matchless">
+            <BrandMark size={32}/>
+            <span className="brand-word">MATCHLESS</span>
+          </a>
+          <nav className="nav-links">
+            <a href="Dark Hero.html#solutions">Solutions</a>
+            <a href="Dark Hero.html#process">Process</a>
+            <a href="Dark Hero.html#pricing">Pricing</a>
+            <a href="Dark Hero.html#cases">Case Studies</a>
+          </nav>
+          <div className="nav-right">
+            <a href="#login" className="client-login">Client Login</a>
+            <a href="Contact.html" className="btn btn-ink btn-sm">Book a Call</a>
+          </div>
+        </div>
+      </header>
+    );
+  }
+
+  // -------- Ribbon background (matches hero page) --------
+  function RibbonBG() {
+    return (
+      <div className="ribbons" aria-hidden="true">
+        <svg viewBox="0 0 1440 3000" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="rb-1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#8EDDBD" stopOpacity="0"/>
+              <stop offset="0.1" stopColor="#8EDDBD" stopOpacity="0.98"/>
+              <stop offset="0.5" stopColor="#49BB94" stopOpacity="1"/>
+              <stop offset="0.9" stopColor="#218766" stopOpacity="0.8"/>
+              <stop offset="1" stopColor="#218766" stopOpacity="0"/>
+            </linearGradient>
+            <linearGradient id="rb-2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#49BB94" stopOpacity="0"/>
+              <stop offset="0.15" stopColor="#49BB94" stopOpacity="0.95"/>
+              <stop offset="0.55" stopColor="#34A57E" stopOpacity="0.98"/>
+              <stop offset="0.95" stopColor="#6BCAA8" stopOpacity="0.8"/>
+              <stop offset="1" stopColor="#6BCAA8" stopOpacity="0"/>
+            </linearGradient>
+            <linearGradient id="rb-3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#218766" stopOpacity="0"/>
+              <stop offset="0.2" stopColor="#218766" stopOpacity="0.92"/>
+              <stop offset="0.6" stopColor="#49BB94" stopOpacity="0.95"/>
+              <stop offset="1" stopColor="#8EDDBD" stopOpacity="0"/>
+            </linearGradient>
+            <linearGradient id="rb-4" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#6BCAA8" stopOpacity="0"/>
+              <stop offset="0.15" stopColor="#6BCAA8" stopOpacity="0.88"/>
+              <stop offset="0.5" stopColor="#49BB94" stopOpacity="0.98"/>
+              <stop offset="0.85" stopColor="#34A57E" stopOpacity="0.8"/>
+              <stop offset="1" stopColor="#34A57E" stopOpacity="0"/>
+            </linearGradient>
+            <linearGradient id="rb-5" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#8EDDBD" stopOpacity="0"/>
+              <stop offset="0.2" stopColor="#8EDDBD" stopOpacity="0.95"/>
+              <stop offset="0.6" stopColor="#6BCAA8" stopOpacity="0.92"/>
+              <stop offset="1" stopColor="#49BB94" stopOpacity="0"/>
+            </linearGradient>
+            <filter id="rb-halo" x="-10%" y="-5%" width="120%" height="110%">
+              <feGaussianBlur stdDeviation="3"/>
+            </filter>
+          </defs>
+
+          <g>
+            <g className="braid">
+              <g filter="url(#rb-halo)">
+                <path className="rpath rpath-1" d="M 174.0 -50 C 174.0 200.0, 1094.0 100.0, 1094.0 350 C 1094.0 600.0, 287.5 550.0, 287.5 800 C 287.5 1050.0, 1162.4 1000.0, 1162.4 1250 C 1162.4 1500.0, 312.9 1450.0, 312.9 1700 C 312.9 1950.0, 1237.6 1900.0, 1237.6 2150 C 1237.6 2400.0, 275.2 2350.0, 275.2 2600 C 275.2 2850.0, 1083.5 2800.0, 1083.5 3050" stroke="url(#rb-1)" strokeWidth="13" opacity="0.42"/>
+                <path className="rpath rpath-2" d="M 188.2 -50 C 188.2 200.0, 1079.8 100.0, 1079.8 350 C 1079.8 600.0, 273.5 550.0, 273.5 800 C 273.5 1050.0, 1148.3 1000.0, 1148.3 1250 C 1148.3 1500.0, 298.9 1450.0, 298.9 1700 C 298.9 1950.0, 1223.6 1900.0, 1223.6 2150 C 1223.6 2400.0, 261.2 2350.0, 261.2 2600 C 261.2 2850.0, 1069.5 2800.0, 1069.5 3050" stroke="url(#rb-3)" strokeWidth="9" opacity="0.42"/>
+                <path className="rpath rpath-3" d="M 200.0 -50 C 200.0 200.0, 1100.0 100.0, 1100.0 350 C 1100.0 600.0, 250.0 550.0, 250.0 800 C 250.0 1050.0, 1150.0 1000.0, 1150.0 1250 C 1150.0 1500.0, 300.0 1450.0, 300.0 1700 C 300.0 1950.0, 1200.0 1900.0, 1200.0 2150 C 1200.0 2400.0, 250.0 2350.0, 250.0 2600 C 250.0 2850.0, 1100.0 2800.0, 1100.0 3050" stroke="url(#rb-2)" strokeWidth="16" opacity="0.42"/>
+                <path className="rpath rpath-4" d="M 211.8 -50 C 211.8 200.0, 1120.2 100.0, 1120.2 350 C 1120.2 600.0, 226.5 550.0, 226.5 800 C 226.5 1050.0, 1151.7 1000.0, 1151.7 1250 C 1151.7 1500.0, 301.1 1450.0, 301.1 1700 C 301.1 1950.0, 1176.4 1900.0, 1176.4 2150 C 1176.4 2400.0, 238.8 2350.0, 238.8 2600 C 238.8 2850.0, 1130.5 2800.0, 1130.5 3050" stroke="url(#rb-4)" strokeWidth="9" opacity="0.42"/>
+                <path className="rpath rpath-5" d="M 226.0 -50 C 226.0 200.0, 1105.9 100.0, 1105.9 350 C 1105.9 600.0, 212.5 550.0, 212.5 800 C 212.5 1050.0, 1137.6 1000.0, 1137.6 1250 C 1137.6 1500.0, 287.1 1450.0, 287.1 1700 C 287.1 1950.0, 1162.4 1900.0, 1162.4 2150 C 1162.4 2400.0, 224.8 2350.0, 224.8 2600 C 224.8 2850.0, 1116.5 2800.0, 1116.5 3050" stroke="url(#rb-5)" strokeWidth="7" opacity="0.42"/>
+              </g>
+              <g>
+                <path className="rpath rpath-1" d="M 174.0 -50 C 174.0 200.0, 1094.0 100.0, 1094.0 350 C 1094.0 600.0, 287.5 550.0, 287.5 800 C 287.5 1050.0, 1162.4 1000.0, 1162.4 1250 C 1162.4 1500.0, 312.9 1450.0, 312.9 1700 C 312.9 1950.0, 1237.6 1900.0, 1237.6 2150 C 1237.6 2400.0, 275.2 2350.0, 275.2 2600 C 275.2 2850.0, 1083.5 2800.0, 1083.5 3050" stroke="url(#rb-1)" strokeWidth="2.2" opacity="1"/>
+                <path className="rpath rpath-2" d="M 188.2 -50 C 188.2 200.0, 1079.8 100.0, 1079.8 350 C 1079.8 600.0, 273.5 550.0, 273.5 800 C 273.5 1050.0, 1148.3 1000.0, 1148.3 1250 C 1148.3 1500.0, 298.9 1450.0, 298.9 1700 C 298.9 1950.0, 1223.6 1900.0, 1223.6 2150 C 1223.6 2400.0, 261.2 2350.0, 261.2 2600 C 261.2 2850.0, 1069.5 2800.0, 1069.5 3050" stroke="url(#rb-3)" strokeWidth="1.6" opacity="1"/>
+                <path className="rpath rpath-3" d="M 200.0 -50 C 200.0 200.0, 1100.0 100.0, 1100.0 350 C 1100.0 600.0, 250.0 550.0, 250.0 800 C 250.0 1050.0, 1150.0 1000.0, 1150.0 1250 C 1150.0 1500.0, 300.0 1450.0, 300.0 1700 C 300.0 1950.0, 1200.0 1900.0, 1200.0 2150 C 1200.0 2400.0, 250.0 2350.0, 250.0 2600 C 250.0 2850.0, 1100.0 2800.0, 1100.0 3050" stroke="url(#rb-2)" strokeWidth="2.6" opacity="1"/>
+                <path className="rpath rpath-4" d="M 211.8 -50 C 211.8 200.0, 1120.2 100.0, 1120.2 350 C 1120.2 600.0, 226.5 550.0, 226.5 800 C 226.5 1050.0, 1151.7 1000.0, 1151.7 1250 C 1151.7 1500.0, 301.1 1450.0, 301.1 1700 C 301.1 1950.0, 1176.4 1900.0, 1176.4 2150 C 1176.4 2400.0, 238.8 2350.0, 238.8 2600 C 238.8 2850.0, 1130.5 2800.0, 1130.5 3050" stroke="url(#rb-4)" strokeWidth="1.6" opacity="1"/>
+                <path className="rpath rpath-5" d="M 226.0 -50 C 226.0 200.0, 1105.9 100.0, 1105.9 350 C 1105.9 600.0, 212.5 550.0, 212.5 800 C 212.5 1050.0, 1137.6 1000.0, 1137.6 1250 C 1137.6 1500.0, 287.1 1450.0, 287.1 1700 C 287.1 1950.0, 1162.4 1900.0, 1162.4 2150 C 1162.4 2400.0, 224.8 2350.0, 224.8 2600 C 224.8 2850.0, 1116.5 2800.0, 1116.5 3050" stroke="url(#rb-5)" strokeWidth="1.4" opacity="1"/>
+              </g>
+            </g>
+          </g>
+        </svg>
+        <div className="ribbons-veil"></div>
+      </div>
+    );
+  }
+
+  // -------- Contact page hero --------
+  function ContactHero() {
+    return (
+      <section className="contact-hero section-wrap">
+        <div className="contact-hero-inner">
+          <div className="hero-eyebrow">
+            <span className="hero-eyebrow-dot"/>
+            <span className="hero-eyebrow-text">Start your system</span>
+            <span className="hero-eyebrow-divider"/>
+            <span className="hero-eyebrow-link">We respond within 1 business day</span>
+          </div>
+          <h1 className="contact-hero-title">
+            Let's build the system<br/>that scales your <em>revenue</em>.
+          </h1>
+          <p className="contact-hero-sub">
+            Tell us where you are and where you want to be. We'll reply with a plan — or honest feedback on whether we're the right fit.
+          </p>
+        </div>
+      </section>
+    );
+  }
+
+  // -------- Contact form + info side-by-side --------
+  function ContactBody() {
+    const [state, setState] = useState({
+      name: "", company: "", email: "", phone: "",
+      help: "", budget: "", timeline: "", message: ""
+    });
+    const [submitted, setSubmitted] = useState(false);
+
+    function update(k, v) { setState(s => ({ ...s, [k]: v })); }
+    function submit(e) {
+      e.preventDefault();
+      setSubmitted(true);
+    }
+
+    const helpOptions = [
+      "Client Acquisition System",
+      "Website rebuild",
+      "SEO architecture",
+      "Sales funnel & automations",
+      "Not sure — help me figure it out",
+    ];
+    const budgetOptions = [
+      "$10–25k", "$25–50k", "$50–100k", "$100k+", "Not sure yet"
+    ];
+    const timelineOptions = [
+      "ASAP / 30 days", "60 days", "This quarter", "Exploring"
+    ];
+
+    return (
+      <section className="contact-body section-wrap">
+        <div className="contact-grid">
+          {/* Form card */}
+          <div className="contact-form-card">
+            <div className="contact-form-head">
+              <div className="sec-eyebrow"><span className="sec-eyebrow-dot"/>Project inquiry</div>
+              <h2>Tell us about your project</h2>
+              <p className="contact-form-sub">All fields optional except email — the more you share, the better our first reply.</p>
+            </div>
+
+            {submitted ? (
+              <div className="contact-success">
+                <div className="contact-success-icon"><Icon.Check/></div>
+                <h3>Thanks — we got it.</h3>
+                <p>A senior strategist will review your notes and reply within 1 business day. If it's urgent, email <a href="mailto:hello@matchlessweb.com">hello@matchlessweb.com</a> directly.</p>
+              </div>
+            ) : (
+              <form className="contact-form" onSubmit={submit}>
+                <div className="cf-row">
+                  <div className="cf-field">
+                    <label>Name</label>
+                    <input type="text" placeholder="Jane Doe" value={state.name} onChange={e => update('name', e.target.value)}/>
+                  </div>
+                  <div className="cf-field">
+                    <label>Company</label>
+                    <input type="text" placeholder="Acme Industries" value={state.company} onChange={e => update('company', e.target.value)}/>
+                  </div>
+                </div>
+                <div className="cf-row">
+                  <div className="cf-field">
+                    <label>Email <span className="cf-req">*</span></label>
+                    <input type="email" required placeholder="you@company.com" value={state.email} onChange={e => update('email', e.target.value)}/>
+                  </div>
+                  <div className="cf-field">
+                    <label>Phone <span className="cf-opt">optional</span></label>
+                    <input type="tel" placeholder="+1 (555) 000-0000" value={state.phone} onChange={e => update('phone', e.target.value)}/>
+                  </div>
+                </div>
+
+                <div className="cf-field">
+                  <label>What do you need help with?</label>
+                  <div className="cf-chips">
+                    {helpOptions.map(opt => (
+                      <button type="button" key={opt}
+                        className={"cf-chip" + (state.help === opt ? " is-active" : "")}
+                        onClick={() => update('help', opt)}>
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="cf-row">
+                  <div className="cf-field">
+                    <label>Budget range</label>
+                    <div className="cf-chips cf-chips-tight">
+                      {budgetOptions.map(opt => (
+                        <button type="button" key={opt}
+                          className={"cf-chip cf-chip-sm" + (state.budget === opt ? " is-active" : "")}
+                          onClick={() => update('budget', opt)}>
+                          {opt}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="cf-field">
+                    <label>Timeline</label>
+                    <div className="cf-chips cf-chips-tight">
+                      {timelineOptions.map(opt => (
+                        <button type="button" key={opt}
+                          className={"cf-chip cf-chip-sm" + (state.timeline === opt ? " is-active" : "")}
+                          onClick={() => update('timeline', opt)}>
+                          {opt}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="cf-field">
+                  <label>Tell us more</label>
+                  <textarea rows="5" placeholder="Context, goals, what's not working, what good looks like…" value={state.message} onChange={e => update('message', e.target.value)}/>
+                </div>
+
+                <div className="cf-footer">
+                  <div className="cf-fine">
+                    <Icon.Shield/>
+                    <span>Your info is never shared. We reply personally, not via autoresponder.</span>
+                  </div>
+                  <button type="submit" className="btn btn-primary btn-lg">
+                    Send inquiry
+                    <span className="btn-arrow"><Icon.ArrowRight/></span>
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+
+          {/* Info sidebar */}
+          <aside className="contact-aside">
+            <div className="contact-info-card">
+              <div className="contact-info-icon"><Icon.Mail/></div>
+              <div className="contact-info-body">
+                <h4>Email</h4>
+                <a href="mailto:hello@matchlessweb.com">hello@matchlessweb.com</a>
+                <p className="contact-info-note">Best for project inquiries &amp; detail.</p>
+              </div>
+            </div>
+
+            <div className="contact-info-card">
+              <div className="contact-info-icon"><Icon.Calendar/></div>
+              <div className="contact-info-body">
+                <h4>Book a 30-min strategy call</h4>
+                <a href="#call" className="contact-info-link">Open calendar →</a>
+                <p className="contact-info-note">Zoom. No sales pitch — you'll leave with two concrete next steps.</p>
+              </div>
+            </div>
+
+            <div className="contact-info-card">
+              <div className="contact-info-icon"><Icon.Clock/></div>
+              <div className="contact-info-body">
+                <h4>Response time</h4>
+                <span className="contact-info-value">&lt; 1 business day</span>
+                <p className="contact-info-note">Mon–Fri, 9am–6pm CT. Urgent? Mark it in your note.</p>
+              </div>
+            </div>
+
+            <div className="contact-info-card">
+              <div className="contact-info-icon"><Icon.MapPin/></div>
+              <div className="contact-info-body">
+                <h4>Based in</h4>
+                <span className="contact-info-value">Austin, TX</span>
+                <p className="contact-info-note">Working with operators across the US &amp; EU.</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    );
+  }
+
+  // -------- What happens next --------
+  function NextSteps() {
+    const steps = [
+      { n: "01", t: "You send a note", d: "Share your context and goals. Email or the form — either works." },
+      { n: "02", t: "We reply with a plan", d: "Within 1 business day: honest feedback, questions, and a 30-min call if we're a fit." },
+      { n: "03", t: "We map the system", d: "On the call, you'll leave with two concrete next steps — whether or not you hire us." },
+    ];
+    return (
+      <section className="next-steps section-wrap">
+        <div className="section">
+          <div className="section-inner">
+            <div className="sec-eyebrow"><span className="sec-eyebrow-dot"/>What happens next</div>
+            <h2 className="next-steps-title">No forms fired into the void.</h2>
+            <p className="next-steps-sub">Every inquiry goes to a senior strategist, not a BDR. Here's the flow.</p>
+            <div className="next-steps-grid">
+              {steps.map(s => (
+                <div key={s.n} className="next-step">
+                  <div className="next-step-n">{s.n}</div>
+                  <h3>{s.t}</h3>
+                  <p>{s.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // -------- App --------
+  function App() {
+    return (
+      <div className="page mw-ink-surface contact-page">
+        <RibbonBG/>
+        <Nav/>
+        <main>
+          <ContactHero/>
+          <ContactBody/>
+          <NextSteps/>
+        </main>
+        <Footer/>
+      </div>
+    );
+  }
+
+  // Wait for Sections.jsx (Footer) to be ready before mounting
+  const mount = () => {
+    if (!window.Footer) return setTimeout(mount, 30);
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  };
+  mount();
+  </script>
+</body>
+</html>
