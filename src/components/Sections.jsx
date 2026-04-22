@@ -198,7 +198,7 @@ function Guide() {
 // ============ PLAN ============
 function Plan() {
   const steps = [
-    { n: "01", title: "Book a call", body: "A 20-minute discovery call. We learn your business, you learn whether we're a fit. No pitch, no pressure." },
+    { n: "01", title: "Book a call", body: "A 15-minute discovery call. We learn your business, you learn whether we're a fit. No pitch, no pressure." },
     { n: "02", title: "We build", body: "We design and ship the full Client Acquisition System — site, funnels, automations — in weeks, not months." },
     { n: "03", title: "You scale", body: "Your website runs itself. You get your week back and focus on the work only you can do." },
   ];
@@ -375,8 +375,8 @@ function FinalCTA() {
       <div className="section cta-final">
         <div className="section-inner">
           <div className="sec-eyebrow" style={{justifyContent: 'center'}}>Ready when you are</div>
-          <h2 className="sec-title">Hand off the website. <span className="accent">Run your business.</span></h2>
-          <p className="sec-lead">A 20-minute call. No pitch, no pressure. Just a clear picture of whether we're the right fit.</p>
+          <h2 className="sec-title">Hand off the website. <span className="accent">Run your&nbsp;business.</span></h2>
+          <p className="sec-lead">A 15-minute call. No pitch, no pressure. Just a clear picture of whether we're the right fit.</p>
           <div className="hero-actions">
             <a href="#call" className="btn btn-primary btn-lg">
               Book a discovery call
