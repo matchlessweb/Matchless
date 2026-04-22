@@ -131,10 +131,10 @@ function Hero() {
   }, []);
 
   const T = {
-    accentWord: "sales.",
+    accentWord: "revenue.",
     activeTab: "BUILD",
-    headlineLine1: "We engineer systems",
-    headlineLine2: "that scale your B2B",
+    headlineLine1: "Systems",
+    headlineLine2: "that scale",
     headlineLine3: "{accent}",
   };
 
