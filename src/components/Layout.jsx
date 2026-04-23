@@ -10,7 +10,7 @@ export default function Layout() {
   const isContact = location.pathname === '/contact';
 
   useLayoutEffect(() => {
-    // Other global layout effects can go here
+    window.scrollTo(0, 0);
   }, [location.pathname]);
 
   return (

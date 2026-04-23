@@ -1,6 +1,7 @@
 /* Sections.jsx — all landing page sections below the hero */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { SecIcon } from './Icons';
 
 // ============ PLACEHOLDER AVATARS ============
@@ -418,7 +419,7 @@ export function Footer() {
             <li><a href="#guide">About</a></li>
             <li><a href="#cases">Case studies</a></li>
             <li><a href="#plan">Process</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><Link to="/contact">Contact</Link></li>
           </ul>
         </div>
         <div className="footer-col">
