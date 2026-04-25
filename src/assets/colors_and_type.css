@@ -19,32 +19,32 @@
   font-style: normal;
   font-weight: 400 800;
   font-display: swap;
-  src: url('fonts/Syne-VariableFont_wght.ttf') format('truetype-variations'),
-       url('fonts/Syne-VariableFont_wght.ttf') format('truetype');
+  src: url('/fonts/Syne-VariableFont_wght.ttf') format('truetype-variations'),
+       url('/fonts/Syne-VariableFont_wght.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Inter Tight';
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('fonts/InterTight-VariableFont_wght.ttf') format('truetype-variations'),
-       url('fonts/InterTight-VariableFont_wght.ttf') format('truetype');
+  src: url('/fonts/InterTight-VariableFont_wght.ttf') format('truetype-variations'),
+       url('/fonts/InterTight-VariableFont_wght.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype-variations'),
-       url('fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  src: url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype-variations'),
+       url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
 }
 @font-face {
   font-family: 'JetBrains Mono';
   font-style: normal;
   font-weight: 100 800;
   font-display: swap;
-  src: url('fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype-variations'),
-       url('fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype');
+  src: url('/fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype-variations'),
+       url('/fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype');
 }
 
 :root {
