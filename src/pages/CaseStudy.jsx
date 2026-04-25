@@ -20,13 +20,17 @@ export default function CaseStudy() {
   useLayoutEffect(() => {
     if (study && containerRef.current) {
       let ctx = gsap.context(() => {
-        gsap.from(".cs-animate", {
-          y: 20,
-          opacity: 0,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "power3.out"
-        });
+        gsap.fromTo(".cs-animate", 
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power3.out",
+            clearProps: "all"
+          }
+        );
       }, containerRef);
       return () => ctx.revert();
     }

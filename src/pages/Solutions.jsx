@@ -29,26 +29,34 @@ export default function Solutions() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // Fade in the hero header
-      gsap.from('.solutions-header', {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out'
-      });
+      gsap.fromTo('.solutions-header', 
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: 'power3.out',
+          clearProps: 'all'
+        }
+      );
 
       // Stagger in the systems on scroll
       gsap.utils.toArray('.system-section').forEach((section) => {
-        gsap.from(section, {
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 80%',
-            toggleActions: 'play none none none'
-          },
-          y: 60,
-          opacity: 0,
-          duration: 1,
-          ease: 'power3.out'
-        });
+        gsap.fromTo(section, 
+          { y: 60, opacity: 0 },
+          {
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 80%',
+              toggleActions: 'play none none none'
+            },
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: 'power3.out',
+            clearProps: 'all'
+          }
+        );
       });
     }, containerRef);
 

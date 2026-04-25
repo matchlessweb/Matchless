@@ -12,26 +12,34 @@ export default function Process() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // Fade in the hero header
-      gsap.from('.process-header', {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out'
-      });
+      gsap.fromTo('.process-header', 
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: 'power3.out',
+          clearProps: 'all'
+        }
+      );
 
       // Stagger in the phases on scroll
       gsap.utils.toArray('.process-phase').forEach((phase) => {
-        gsap.from(phase, {
-          scrollTrigger: {
-            trigger: phase,
-            start: 'top 80%',
-            toggleActions: 'play none none none'
-          },
-          y: 60,
-          opacity: 0,
-          duration: 1,
-          ease: 'power3.out'
-        });
+        gsap.fromTo(phase, 
+          { y: 50, opacity: 0 },
+          {
+            scrollTrigger: {
+              trigger: phase,
+              start: 'top 85%',
+              toggleActions: 'play none none none'
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            clearProps: 'all'
+          }
+        );
       });
     }, containerRef);
 
