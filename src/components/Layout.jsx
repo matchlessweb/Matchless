@@ -3,11 +3,11 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Navigation from './Navigation';
 import { Footer } from './Sections';
 import BraidBackground from './BraidBackground';
-import { gsap } from 'gsap';
 
 export default function Layout() {
   const location = useLocation();
   const isContact = location.pathname === '/contact';
+  const isCaseStudies = location.pathname.startsWith('/case-stud');
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -15,7 +15,7 @@ export default function Layout() {
 
   return (
     <div className={`page mw-ink-surface ${isContact ? 'contact-page' : ''}`}>
-      <BraidBackground />
+      {!isCaseStudies && <BraidBackground />}
       <Navigation />
       <Outlet />
       <Footer />

@@ -1,0 +1,210 @@
+/* =============================================================
+   Solutions Page Styles
+   ============================================================= */
+
+.solutions-page {
+  padding: 120px var(--space-6);
+  max-width: var(--container-base);
+  margin: 0 auto;
+  position: relative;
+}
+
+.solutions-header {
+  text-align: center;
+  margin-bottom: 120px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.solutions-header h1 {
+  color: var(--mw-white);
+  margin-bottom: var(--space-4);
+  text-wrap: balance;
+}
+
+.solutions-header p {
+  color: var(--fg-2);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+}
+
+/* System Sections */
+.solutions-systems {
+  display: flex;
+  flex-direction: column;
+  gap: 160px;
+}
+
+.system-section {
+  scroll-margin-top: 100px; /* Offset for hash links */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.system-section:nth-child(even) {
+  direction: rtl;
+}
+
+.system-section:nth-child(even) > * {
+  direction: ltr;
+}
+
+@media (max-width: 900px) {
+  .solutions-page {
+    padding: 80px var(--space-4);
+  }
+
+  .solutions-header {
+    margin-bottom: 80px;
+  }
+
+  .solutions-systems {
+    gap: 80px;
+  }
+
+  .system-section, .system-section:nth-child(even) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    direction: ltr;
+  }
+
+  .system-visual {
+    padding: var(--space-10) var(--space-5);
+    aspect-ratio: auto;
+    min-height: 300px;
+  }
+
+  .visual-bg-svg {
+    transform: scale(1.6);
+  }
+
+  .visual-card {
+    width: 90%;
+    padding: var(--space-6) var(--space-5);
+  }
+}
+
+.system-content h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(32px, 4vw, var(--text-4xl));
+  color: var(--mw-white);
+  margin-bottom: var(--space-4);
+  line-height: var(--lh-tight);
+}
+
+.system-content h3 {
+  color: var(--mw-green-400);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-2);
+  margin-top: var(--space-6);
+}
+
+.system-content p {
+  color: var(--fg-2);
+  margin-bottom: var(--space-4);
+  line-height: 1.6;
+  font-size: var(--text-base);
+}
+
+/* System Visuals */
+.system-visual {
+  width: 100%;
+  background: var(--bg-2);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-4);
+  aspect-ratio: 4/3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Mock components inside the visuals */
+.visual-card {
+  background: var(--bg-1);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  width: 80%;
+  margin: 0 auto;
+  box-shadow: var(--shadow-3);
+  position: relative;
+  z-index: 2;
+}
+
+.visual-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-brand-soft);
+  color: var(--mw-green-400);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.visual-title {
+  color: var(--mw-white);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  margin-bottom: 8px;
+}
+
+.visual-text {
+  color: var(--fg-2);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+/* Specific Animations for the visuals */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.anim-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes draw-arrow {
+  to { stroke-dashoffset: 0; }
+}
+
+.anim-arrow {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: draw-arrow 2s ease-out forwards;
+}
+
+.visual-bg-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.anim-spin {
+  transform-origin: center;
+  animation: spin 10s linear infinite;
+}

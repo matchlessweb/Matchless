@@ -1,0 +1,292 @@
+import React, { useRef, useState, useLayoutEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import { gsap } from 'gsap';
+import { Icon } from '../components/Icons';
+
+const HEADSHOT_URL =
+  'https://matchlessweb.com/wp-content/uploads/2026/01/Jon-Phillips-Headshot-Matchless-Wes-Studio-cropped-1024x986.png';
+
+const GBP_URL = 'https://share.google/hNXTWLyCxsWLwdoiF';
+
+// -------- Hero --------
+function AboutHero() {
+  const heroRef = useRef(null);
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.from('.about-hero-inner > *', {
+        y: 40,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.1,
+        ease: 'power3.out',
+        delay: 0.1,
+      });
+    }, heroRef);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section className="about-hero section-wrap" ref={heroRef}>
+      <div className="about-hero-inner">
+        <div className="hero-eyebrow">
+          <span className="hero-eyebrow-dot" />
+          <span className="hero-eyebrow-text">About Matchless</span>
+          <span className="hero-eyebrow-divider" />
+          <span className="hero-eyebrow-link">Clinton, MS · 30+ five-star reviews</span>
+        </div>
+        <h1 className="about-hero-title">
+          You need a web <em>consultant</em>,<br />
+          not a web designer.
+        </h1>
+        <p className="about-hero-sub">
+          Most business websites are liabilities — pretty pages that don't move revenue. I build
+          high-performance Client Acquisition Systems that do.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// -------- Bio + headshot --------
+function BioSection() {
+  return (
+    <section className="about-bio section-wrap">
+      <div className="section">
+        <div className="section-inner about-bio-grid">
+          <div className="about-bio-portrait">
+            <img
+              src={HEADSHOT_URL}
+              alt="Jon Phillips, founder of Matchless Web Studio"
+              width="1024"
+              height="986"
+              loading="lazy"
+            />
+            <div className="about-bio-portrait-tag">
+              <span className="about-bio-tag-dot" />
+              Jon Phillips · Founder
+            </div>
+          </div>
+          <div className="about-bio-copy">
+            <div className="sec-eyebrow">
+              <span className="sec-eyebrow-dot" />
+              The operator behind the work
+            </div>
+            <h2 className="about-bio-title">
+              I treat your website like the <span className="accent">revenue tool</span> it should be.
+            </h2>
+            <p className="about-bio-lead">
+              Matchless is a small studio with one job: turn your website from a digital
+              brochure into a system that brings in qualified work. No bloat, no agency
+              theater — every decision laddered to the question, "does this help you
+              get clients?"
+            </p>
+            <p className="about-bio-body">
+              I work directly with founders and operators across Mississippi and beyond.
+              You'll talk to me on the call, in the build, and after launch — not a
+              project manager translating between you and a team you've never met.
+            </p>
+            <ul className="about-bio-points">
+              <li>
+                <Icon.Bolt /> Lightning-fast, mobile-first builds
+              </li>
+              <li>
+                <Icon.Search /> Clear messaging and navigation
+              </li>
+              <li>
+                <Icon.Layers /> Strategic conversion funnels
+              </li>
+              <li>
+                <Icon.Sparkles /> Data-driven ROI optimization
+              </li>
+              <li>
+                <Icon.Globe /> Integrated traffic and follow-up systems
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// -------- Process --------
+const STEPS = [
+  {
+    n: '01',
+    t: 'Onboarding & Ideation',
+    d: 'We map your offer, audience, and the path a stranger takes to becoming a client. The system gets designed before a single pixel does.',
+  },
+  {
+    n: '02',
+    t: 'Design & Development',
+    d: 'A fast, mobile-first build with messaging that earns attention and a structure that funnels it. You review at every milestone — no surprise reveal at the end.',
+  },
+  {
+    n: '03',
+    t: 'Training & Feedback',
+    d: 'You get loom-walkthroughs and a working session so you (or your team) can confidently update content, publish posts, and read the analytics.',
+  },
+  {
+    n: '04',
+    t: 'Hosting & Aftercare',
+    d: 'Managed hosting, monitoring, and small monthly improvements based on what the data shows — so the site keeps compounding instead of decaying.',
+  },
+];
+
+function HowIWork() {
+  return (
+    <section className="about-process section-wrap">
+      <div className="section">
+        <div className="section-inner">
+          <div className="sec-eyebrow">
+            <span className="sec-eyebrow-dot" />
+            How I work
+          </div>
+          <h2 className="about-section-title">Four steps. No mystery.</h2>
+          <p className="about-section-sub">
+            Every engagement follows the same arc — designed so you always know what's
+            happening, what's next, and what it means for your business.
+          </p>
+          <div className="about-process-grid">
+            {STEPS.map((s) => (
+              <div key={s.n} className="about-process-card">
+                <div className="about-process-n">{s.n}</div>
+                <h3>{s.t}</h3>
+                <p>{s.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// -------- Reviews carousel (scaffold; real text to be pasted) --------
+const REVIEWS = [
+  { name: 'TODO – reviewer name', stars: 5, date: 'TODO – date', quote: 'TODO – paste real review text from the Google Business Profile.' },
+  { name: 'TODO – reviewer name', stars: 5, date: 'TODO – date', quote: 'TODO – paste real review text from the Google Business Profile.' },
+  { name: 'TODO – reviewer name', stars: 5, date: 'TODO – date', quote: 'TODO – paste real review text from the Google Business Profile.' },
+  { name: 'TODO – reviewer name', stars: 5, date: 'TODO – date', quote: 'TODO – paste real review text from the Google Business Profile.' },
+  { name: 'TODO – reviewer name', stars: 5, date: 'TODO – date', quote: 'TODO – paste real review text from the Google Business Profile.' },
+  { name: 'TODO – reviewer name', stars: 5, date: 'TODO – date', quote: 'TODO – paste real review text from the Google Business Profile.' },
+];
+
+function ReviewsCarousel() {
+  const [i, setI] = useState(0);
+  const total = REVIEWS.length;
+  const go = (n) => setI(((n % total) + total) % total);
+  const r = REVIEWS[i];
+
+  return (
+    <section className="about-reviews section-wrap">
+      <div className="section">
+        <div className="section-inner">
+          <div className="sec-eyebrow">
+            <span className="sec-eyebrow-dot" />
+            What clients say
+          </div>
+          <h2 className="about-section-title">
+            Thirty-plus five-star reviews — <span className="accent">and counting.</span>
+          </h2>
+          <p className="about-section-sub">
+            Pulled from the Matchless Web Studio Google Business Profile.{' '}
+            <a href={GBP_URL} target="_blank" rel="noreferrer" className="about-reviews-link">
+              Read all reviews on Google →
+            </a>
+          </p>
+
+          <div className="about-review-stage">
+            <button
+              type="button"
+              className="about-review-arrow about-review-arrow--prev"
+              aria-label="Previous review"
+              onClick={() => go(i - 1)}
+            >
+              ‹
+            </button>
+            <article className="about-review-card" aria-live="polite">
+              <div className="about-review-stars" aria-label={`${r.stars} out of 5 stars`}>
+                {Array.from({ length: r.stars }).map((_, idx) => (
+                  <Icon.Star key={idx} />
+                ))}
+              </div>
+              <blockquote className="about-review-quote">"{r.quote}"</blockquote>
+              <div className="about-review-meta">
+                <span className="about-review-name">{r.name}</span>
+                <span className="about-review-dot">·</span>
+                <span className="about-review-date">{r.date}</span>
+              </div>
+            </article>
+            <button
+              type="button"
+              className="about-review-arrow about-review-arrow--next"
+              aria-label="Next review"
+              onClick={() => go(i + 1)}
+            >
+              ›
+            </button>
+          </div>
+
+          <div className="about-review-dots" role="tablist">
+            {REVIEWS.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                role="tab"
+                aria-selected={idx === i}
+                aria-label={`Go to review ${idx + 1}`}
+                className={'about-review-dot-btn' + (idx === i ? ' is-active' : '')}
+                onClick={() => go(idx)}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// -------- CTA strip --------
+function AboutCTA() {
+  return (
+    <section className="about-cta section-wrap">
+      <div className="section about-cta-section">
+        <div className="section-inner about-cta-inner">
+          <div>
+            <div className="sec-eyebrow">
+              <span className="sec-eyebrow-dot" />
+              Let's get to work
+            </div>
+            <h2 className="about-cta-title">
+              Ready to stop treating your website like a liability?
+            </h2>
+            <p className="about-cta-sub">
+              Tell me where you are and where you want to be. You'll get an honest reply
+              within one business day — and a 15-minute call if we're a fit.
+            </p>
+          </div>
+          <NavLink to="/contact" className="btn btn-primary btn-lg">
+            Book a discovery call
+            <span className="btn-arrow">
+              <Icon.ArrowRight />
+            </span>
+          </NavLink>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function About() {
+  return (
+    <main className="about-page">
+      <AboutHero />
+      <BioSection />
+      <HowIWork />
+      <ReviewsCarousel />
+      <AboutCTA />
+    </main>
+  );
+}

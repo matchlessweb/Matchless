@@ -1,0 +1,223 @@
+/* =============================================================
+   Process Page Styles
+   ============================================================= */
+
+.process-page {
+  padding: 120px var(--space-6);
+  max-width: var(--container-base);
+  margin: 0 auto;
+  position: relative;
+}
+
+.process-header {
+  text-align: center;
+  margin-bottom: 120px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.process-header h1 {
+  color: var(--mw-white);
+  margin-bottom: var(--space-4);
+}
+
+.process-header p {
+  color: var(--fg-2);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+}
+
+/* Process Timeline / Phases */
+.process-phases {
+  display: flex;
+  flex-direction: column;
+  gap: 160px;
+  position: relative;
+}
+
+/* Connecting Line */
+.process-phases::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    rgba(107,202,168,0.3) 10%, 
+    rgba(107,202,168,0.3) 90%, 
+    transparent 100%
+  );
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+@media (max-width: 900px) {
+  .process-phases::before {
+    left: 50%;
+  }
+}
+
+.process-phase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.process-phase:nth-child(even) {
+  direction: rtl;
+}
+
+.process-phase:nth-child(even) > * {
+  direction: ltr;
+}
+
+@media (max-width: 900px) {
+  .process-phase, .process-phase:nth-child(even) {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    direction: ltr;
+    padding-left: 0;
+  }
+}
+
+/* Node circle in middle */
+.phase-node {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  background: var(--bg-1);
+  border: 2px solid var(--mw-green-400);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--mw-green-400);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  box-shadow: 0 0 20px rgba(73,187,148,0.2);
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+  .phase-node {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin: 0 auto;
+  }
+}
+
+.phase-content {
+  background: var(--bg-2);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-3);
+}
+
+.phase-content h2 {
+  color: var(--fg-1);
+  margin-bottom: var(--space-4);
+  font-size: var(--text-2xl);
+}
+
+.phase-content p {
+  color: var(--fg-2);
+  margin-bottom: var(--space-4);
+  line-height: 1.6;
+}
+
+.phase-content ul {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-4) 0 0;
+}
+
+.phase-content li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+  color: var(--fg-2);
+}
+
+.phase-content li svg {
+  color: var(--mw-green-400);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+/* SVG Animations */
+.phase-visual {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  aspect-ratio: 1;
+  background: var(--bg-2);
+  border: 1px solid var(--border-1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+  position: relative;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.5);
+}
+
+/* Sweep Animation for Radar */
+@keyframes sweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.anim-sweep {
+  transform-origin: center;
+  animation: sweep 4s linear infinite;
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.5); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.5; }
+}
+
+.anim-pulse {
+  transform-origin: center;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+.anim-pulse.d-1 { animation-delay: 0.5s; }
+.anim-pulse.d-2 { animation-delay: 1.2s; }
+.anim-pulse.d-3 { animation-delay: 1.8s; }
+
+/* Dash offset for Chart and Loop */
+@keyframes draw-line {
+  to { stroke-dashoffset: 0; }
+}
+
+.anim-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-line 3s ease-out forwards;
+}
+
+/* Loop floating dash */
+@keyframes loop-dash {
+  to { stroke-dashoffset: -100; }
+}
+
+.anim-loop {
+  stroke-dasharray: 10 15;
+  animation: loop-dash 2s linear infinite;
+}

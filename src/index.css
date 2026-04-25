@@ -2,6 +2,10 @@
 @import './styles/hero.css';
 @import './styles/sections.css';
 @import './styles/contact.css';
+@import './styles/about.css';
+@import './styles/case-studies.css';
+@import './styles/process.css';
+@import './styles/solutions.css';
 
 @tailwind base;
 @tailwind components;

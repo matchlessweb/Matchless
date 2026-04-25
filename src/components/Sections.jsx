@@ -379,11 +379,11 @@ function FinalCTA() {
           <h2 className="sec-title">Hand off the website. <span className="accent">Run your&nbsp;business.</span></h2>
           <p className="sec-lead">A 15-minute call. No pitch, no pressure. Just a clear picture of whether we're the right fit.</p>
           <div className="hero-actions">
-            <a href="#call" className="btn btn-primary btn-lg">
+            <Link to="/contact" className="btn btn-primary btn-lg">
               Book a discovery call
               <span className="btn-arrow"><SecIcon.ArrowR/></span>
-            </a>
-            <a href="#cases" className="btn btn-ghost btn-lg">See case studies</a>
+            </Link>
+            <Link to="/case-studies" className="btn btn-ghost btn-lg">See case studies</Link>
           </div>
         </div>
       </div>
@@ -408,17 +408,17 @@ export function Footer() {
         <div className="footer-col">
           <h4>Solutions</h4>
           <ul>
-            <li><a href="#services">Client Acquisition</a></li>
-            <li><a href="#services">Sales Funnels</a></li>
-            <li><a href="#services">Business Automations</a></li>
+            <li><Link to="/solutions#client-acquisition">Client Acquisition</Link></li>
+            <li><Link to="/solutions#sales-funnels">Sales Funnels</Link></li>
+            <li><Link to="/solutions#business-automations">Business Automations</Link></li>
           </ul>
         </div>
         <div className="footer-col">
           <h4>Company</h4>
           <ul>
-            <li><a href="#guide">About</a></li>
-            <li><a href="#cases">Case studies</a></li>
-            <li><a href="#plan">Process</a></li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/case-studies">Case studies</Link></li>
+            <li><Link to="/process">Process</Link></li>
             <li><Link to="/contact">Contact</Link></li>
           </ul>
         </div>
@@ -427,7 +427,6 @@ export function Footer() {
           <ul>
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#">Revenue audit</a></li>
-            <li><a href="#">Client login</a></li>
           </ul>
         </div>
       </div>

@@ -107,7 +107,7 @@ function ContactBody() {
     "Not sure — help me figure it out"
   ];
   const budgetOptions = [
-    "$5K", "$10–25k", "$25–50k", "$50k+"
+    "$5-10k", "$10–25k", "$25–50k", "$50k+"
   ];
   const timelineOptions = [
     "ASAP", "14 days", "30 days", "60 days", "This quarter", "Exploring"
@@ -227,7 +227,7 @@ function ContactBody() {
             <div className="contact-info-icon"><Icon.Mail/></div>
             <div className="contact-info-body">
               <h4>Email</h4>
-              <a href="mailto:hello@matchlessweb.com">hello@matchlessweb.com</a>
+              <a href="mailto:jon@matchlessweb.com">jon@matchlessweb.com</a>
               <p className="contact-info-note">Best for project inquiries &amp; detail.</p>
             </div>
           </div>

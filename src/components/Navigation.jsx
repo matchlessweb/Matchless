@@ -11,13 +11,12 @@ export default function Navigation() {
           <span className="brand-word">MATCHLESS</span>
         </NavLink>
         <nav className="nav-links">
-          <a href="#solutions">Solutions</a>
-          <a href="#process">Process</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#cases">Case Studies</a>
+          <NavLink to="/solutions">Solutions</NavLink>
+          <NavLink to="/process">Process</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/case-studies">Case Studies</NavLink>
         </nav>
         <div className="nav-right">
-          <a href="#login" className="client-login">Client Login</a>
           <NavLink to="/contact" className="btn btn-ink btn-sm">Book a Call</NavLink>
         </div>
       </div>
