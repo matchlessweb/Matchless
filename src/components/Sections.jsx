@@ -391,7 +391,7 @@ function FinalCTA() {
   );
 }
 
-import { BrandMark } from './BrandMark';
+import matchlessLogo from '../assets/logo/matchless-logo.svg';
 
 // ============ FOOTER ============
 export function Footer() {
@@ -400,8 +400,7 @@ export function Footer() {
       <div className="footer-top">
         <div className="footer-brand">
           <a href="#" className="brand brand--lg" aria-label="Matchless">
-            <BrandMark size={32}/>
-            <span className="brand-word">MATCHLESS</span>
+            <img src={matchlessLogo} alt="Matchless" style={{ height: '32px', width: 'auto' }} />
           </a>
           <p>Client Acquisition Systems for operators who are done running their website.</p>
         </div>
