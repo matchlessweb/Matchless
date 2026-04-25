@@ -1,27 +1,25 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { Icon } from '../components/Icons';
 
 // -------- Contact page hero --------
 function ContactHero() {
   const heroRef = useRef(null);
 
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      gsap.fromTo(".contact-hero-inner > *", 
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          stagger: 0.1,
-          ease: "power3.out",
-          clearProps: "all"
-        }
-      );
-    }, heroRef);
-    return () => ctx.revert();
-  }, []);
+  useGSAP(() => {
+    gsap.fromTo(".contact-hero-inner > *", 
+      { y: 20, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.05,
+        ease: "power3.out",
+        clearProps: "all"
+      }
+    );
+  }, { scope: heroRef });
 
   return (
     <section className="contact-hero section-wrap" ref={heroRef}>

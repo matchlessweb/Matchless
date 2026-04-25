@@ -1,6 +1,7 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { Icon } from '../components/Icons';
 import { caseStudies } from '../data/caseStudies';
 
@@ -16,15 +17,12 @@ export default function CaseStudies() {
     ? caseStudies 
     : caseStudies.filter(cs => cs.categories.includes(filter));
 
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      gsap.fromTo(".case-study-card", 
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power3.out" }
-      );
-    }, gridRef);
-    return () => ctx.revert();
-  }, [filter]); // Re-run animation when filter changes
+  useGSAP(() => {
+    gsap.fromTo(".case-study-card", 
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: "power3.out", clearProps: "all" }
+    );
+  }, { scope: gridRef, dependencies: [filter] }); // Re-run animation when filter changes
 
   return (
     <div className="case-studies-archive">

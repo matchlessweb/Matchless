@@ -1,6 +1,7 @@
-import { useLayoutEffect, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SecIcon, Icon } from '../components/Icons';
 import { FinalCTA } from '../components/Sections';
@@ -26,42 +27,38 @@ export default function Solutions() {
     }
   }, [hash]);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // Fade in the hero header
-      gsap.fromTo('.solutions-header', 
+  useGSAP(() => {
+    // Fade in the hero header
+    gsap.fromTo('.solutions-header', 
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: 'power3.out',
+        clearProps: 'all'
+      }
+    );
+
+    // Stagger in the systems on scroll
+    gsap.utils.toArray('.system-section').forEach((section) => {
+      gsap.fromTo(section, 
         { y: 40, opacity: 0 },
         {
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          },
           y: 0,
           opacity: 1,
-          duration: 1,
+          duration: 0.6,
           ease: 'power3.out',
           clearProps: 'all'
         }
       );
-
-      // Stagger in the systems on scroll
-      gsap.utils.toArray('.system-section').forEach((section) => {
-        gsap.fromTo(section, 
-          { y: 60, opacity: 0 },
-          {
-            scrollTrigger: {
-              trigger: section,
-              start: 'top 80%',
-              toggleActions: 'play none none none'
-            },
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: 'power3.out',
-            clearProps: 'all'
-          }
-        );
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+    });
+  }, { scope: containerRef });
 
   return (
     <div className="solutions-page" ref={containerRef}>

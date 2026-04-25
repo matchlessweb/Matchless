@@ -1,5 +1,6 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SecIcon } from '../components/Icons';
 import { FinalCTA } from '../components/Sections';
@@ -9,42 +10,38 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Process() {
   const containerRef = useRef(null);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // Fade in the hero header
-      gsap.fromTo('.process-header', 
+  useGSAP(() => {
+    // Fade in the hero header
+    gsap.fromTo('.process-header', 
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: 'power3.out',
+        clearProps: 'all'
+      }
+    );
+
+    // Stagger in the phases on scroll
+    gsap.utils.toArray('.process-phase').forEach((phase) => {
+      gsap.fromTo(phase, 
         { y: 40, opacity: 0 },
         {
+          scrollTrigger: {
+            trigger: phase,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          },
           y: 0,
           opacity: 1,
-          duration: 1,
+          duration: 0.6,
           ease: 'power3.out',
           clearProps: 'all'
         }
       );
-
-      // Stagger in the phases on scroll
-      gsap.utils.toArray('.process-phase').forEach((phase) => {
-        gsap.fromTo(phase, 
-          { y: 50, opacity: 0 },
-          {
-            scrollTrigger: {
-              trigger: phase,
-              start: 'top 85%',
-              toggleActions: 'play none none none'
-            },
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
-            clearProps: 'all'
-          }
-        );
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+    });
+  }, { scope: containerRef });
 
   return (
     <div className="process-page" ref={containerRef}>

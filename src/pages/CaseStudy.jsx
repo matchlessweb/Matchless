@@ -1,6 +1,7 @@
 import { useState, useLayoutEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { Icon } from '../components/Icons';
 import Lightbox from '../components/Lightbox';
 import { caseStudies } from '../data/caseStudies';
@@ -17,24 +18,21 @@ export default function CaseStudy() {
     setIsLightboxOpen(true);
   };
 
-  useLayoutEffect(() => {
+  useGSAP(() => {
     if (study && containerRef.current) {
-      let ctx = gsap.context(() => {
-        gsap.fromTo(".cs-animate", 
-          { y: 30, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: "power3.out",
-            clearProps: "all"
-          }
-        );
-      }, containerRef);
-      return () => ctx.revert();
+      gsap.fromTo(".cs-animate", 
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.05,
+          ease: "power3.out",
+          clearProps: "all"
+        }
+      );
     }
-  }, [study]);
+  }, { scope: containerRef, dependencies: [study] });
 
   if (!study) {
     return (
