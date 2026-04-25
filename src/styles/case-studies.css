@@ -24,6 +24,12 @@
   pointer-events: none;
   z-index: 0;
 }
+@media (max-width: 1100px) {
+  .case-studies-archive::before,
+  .case-study-template::before {
+    display: none;
+  }
+}
 
 .case-studies-archive > *,
 .case-study-template > * {

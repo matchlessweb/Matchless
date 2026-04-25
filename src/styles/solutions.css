@@ -208,3 +208,7 @@
   transform-origin: center;
   animation: spin 10s linear infinite;
 }
+@media (max-width: 1100px) {
+  .anim-spin { animation: none; }
+  .visual-bg-svg { display: none; }
+}

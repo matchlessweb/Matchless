@@ -38,6 +38,11 @@
   pointer-events: none;
   z-index: 0;
 }
+@media (max-width: 1100px) {
+  .section--grid::before {
+    display: none;
+  }
+}
 .section-inner { position: relative; z-index: 1; }
 
 /* Flush variant — when two sections should read as one container */
