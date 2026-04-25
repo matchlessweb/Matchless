@@ -1,6 +1,8 @@
 import React from 'react';
 
 export default function BraidBackground() {
+  if (typeof window !== 'undefined' && window.innerWidth <= 1100) return null;
+
   return (
     <div className="ribbons" aria-hidden="true">
       <svg viewBox="0 0 1440 3000" preserveAspectRatio="none">
