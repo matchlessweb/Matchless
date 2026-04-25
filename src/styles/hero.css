@@ -195,6 +195,11 @@ html, body {
   pointer-events: none;
   will-change: transform;
 }
+@media (max-width: 768px) {
+  .vortex {
+    display: none; /* Hide heavy blur filters on mobile to prevent GPU bottleneck */
+  }
+}
 .vortex-1 {
   top: 10%; left: 15%;
   width: 520px; height: 520px;
@@ -471,6 +476,9 @@ html, body {
 
 /* ===== HERO LEFT ===== */
 .hero-left { min-width: 0; }
+.hero-left > *, .hero-right {
+  will-change: transform, opacity; /* Force hardware acceleration for GSAP */
+}
 
 .hero-eyebrow {
   display: inline-flex;
@@ -623,6 +631,11 @@ html, body {
   filter: blur(24px);
   z-index: -1;
   pointer-events: none;
+}
+@media (max-width: 768px) {
+  .panel::before {
+    display: none; /* GPU bottleneck fix */
+  }
 }
 
 @keyframes panel-pulse {
