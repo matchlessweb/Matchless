@@ -915,3 +915,18 @@ html, body {
   font-size: 12px;
   max-width: 130px;
 }
+
+/* =========================================================
+   WEBKIT / SAFARI CRITICAL PERFORMANCE BYPASS
+   Safari's rendering engine cannot hardware-accelerate massive 
+   animated SVG paths or multiple overlapping radial gradients 
+   effectively, causing the entire browser to lag/hang. 
+   We gracefully hide these specific decorative elements on Apple 
+   devices, letting the clean background gradients take over.
+   ========================================================= */
+@supports (-webkit-hyphens:none) {
+  .ribbons { display: none !important; }
+  .vortex { display: none !important; }
+  .panel { animation: none !important; }
+  .nav { backdrop-filter: none !important; background: rgba(10, 15, 13, 0.95) !important; }
+}
