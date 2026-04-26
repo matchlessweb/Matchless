@@ -26,6 +26,8 @@
 
 .audit-content {
   max-width: 600px;
+  position: relative;
+  z-index: 2;
 }
 
 .audit-content .hero-title {
@@ -256,14 +258,21 @@
    ========================================= */
 
 .leaky-bucket-wrapper {
-  width: 100px; /* Base scale */
+  position: absolute;
+  top: -60px;
+  right: 0px;
+  width: 320px; /* Scale it up significantly */
   height: auto;
-  margin-bottom: 24px;
+  opacity: 0.12; /* Make it a subtle watermark */
+  z-index: -1; /* Send it behind the text */
+  pointer-events: none;
 }
 
 @media (max-width: 960px) {
   .leaky-bucket-wrapper {
-    margin: 0 auto 24px auto; /* Center on mobile */
+    top: -40px;
+    right: -20px;
+    width: 200px;
   }
 }
 
