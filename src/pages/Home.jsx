@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { Icon } from '../components/Icons';
@@ -156,7 +157,7 @@ function Hero() {
             <div className="hero-eyebrow">
               <span className="hero-eyebrow-text">Client Acquisition Systems</span>
               <span className="hero-eyebrow-divider"/>
-              <a href="#cases" className="hero-eyebrow-link">Read our case studies</a>
+              <Link to="/case-studies" className="hero-eyebrow-link">Read our case studies</Link>
             </div>
 
             <h1 className="hero-title">
@@ -186,11 +187,11 @@ function Hero() {
             </div>
 
             <div className="hero-actions">
-              <a href="#start" className="btn btn-primary btn-lg">
+              <Link to="/contact" className="btn btn-primary btn-lg">
                 Start the protocol
                 <span className="btn-arrow"><Icon.ArrowRight/></span>
-              </a>
-              <a href="#solutions" className="btn btn-ghost btn-lg">Explore Solutions</a>
+              </Link>
+              <Link to="/solutions" className="btn btn-ghost btn-lg">Explore Solutions</Link>
             </div>
           </div>
 
