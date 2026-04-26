@@ -32,9 +32,8 @@
   background-image:
     linear-gradient(to right, rgba(107,202,168,0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(107,202,168,0.05) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 30%, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 30%, transparent 85%);
+  background-size: 56px 56px;
+  opacity: 0.5; /* Fade grid instead of using CPU-heavy mask-image */
   pointer-events: none;
   z-index: 0;
 }

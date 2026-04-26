@@ -192,54 +192,41 @@ html, body {
   100% { transform: translate3d(6%, 0, 0) rotate(4deg) scaleX(1.08); }
 }
 
-/* Swirling vortex blobs on top — conic gradients that rotate */
 .vortex {
   position: absolute;
   border-radius: 50%;
   mix-blend-mode: screen;
-  filter: blur(80px);
   pointer-events: none;
-  will-change: transform;
 }
 @media (max-width: 1100px) {
   .vortex {
-    display: none; /* Hide heavy blur filters on mobile to prevent GPU bottleneck */
+    display: none; /* Hide heavy graphics on mobile to prevent GPU bottleneck */
   }
 }
 .vortex-1 {
   top: 10%; left: 15%;
   width: 520px; height: 520px;
-  background: conic-gradient(from 0deg,
-    rgba(107,202,168,0.6), rgba(33,135,102,0.2), rgba(240,236,228,0.35),
-    rgba(73,187,148,0.55), rgba(107,202,168,0.6));
-  animation: vortex-spin-cw 28s linear infinite, vortex-drift-1 22s ease-in-out infinite alternate;
+  background: radial-gradient(circle, rgba(107,202,168,0.4) 0%, rgba(73,187,148,0.2) 40%, transparent 70%);
+  animation: vortex-drift-1 22s ease-in-out infinite alternate;
 }
 .vortex-2 {
   top: 38%; right: 8%;
   width: 620px; height: 620px;
-  background: conic-gradient(from 180deg,
-    rgba(73,187,148,0.55), rgba(240,236,228,0.3),
-    rgba(33,135,102,0.4), rgba(107,202,168,0.55), rgba(73,187,148,0.55));
-  animation: vortex-spin-ccw 36s linear infinite, vortex-drift-2 26s ease-in-out infinite alternate;
+  background: radial-gradient(circle, rgba(73,187,148,0.4) 0%, rgba(33,135,102,0.2) 40%, transparent 70%);
+  animation: vortex-drift-2 26s ease-in-out infinite alternate;
 }
 .vortex-3 {
   top: 68%; left: 12%;
   width: 560px; height: 560px;
-  background: conic-gradient(from 90deg,
-    rgba(107,202,168,0.5), rgba(33,135,102,0.35),
-    rgba(240,236,228,0.3), rgba(73,187,148,0.55), rgba(107,202,168,0.5));
-  animation: vortex-spin-cw 32s linear infinite, vortex-drift-3 30s ease-in-out infinite alternate;
+  background: radial-gradient(circle, rgba(107,202,168,0.3) 0%, rgba(33,135,102,0.15) 40%, transparent 70%);
+  animation: vortex-drift-3 30s ease-in-out infinite alternate;
 }
 .vortex-4 {
   top: 88%; right: 18%;
   width: 500px; height: 500px;
-  background: conic-gradient(from 270deg,
-    rgba(73,187,148,0.5), rgba(240,236,228,0.28),
-    rgba(107,202,168,0.55), rgba(33,135,102,0.4), rgba(73,187,148,0.5));
-  animation: vortex-spin-ccw 40s linear infinite, vortex-drift-4 34s ease-in-out infinite alternate;
+  background: radial-gradient(circle, rgba(73,187,148,0.3) 0%, rgba(107,202,168,0.2) 40%, transparent 70%);
+  animation: vortex-drift-4 34s ease-in-out infinite alternate;
 }
-@keyframes vortex-spin-cw { to { transform: rotate(360deg); } }
-@keyframes vortex-spin-ccw { to { transform: rotate(-360deg); } }
 @keyframes vortex-drift-1 {
   0% { translate: 0 0; } 50% { translate: 12% 8%; } 100% { translate: -8% 6%; }
 }
@@ -457,9 +444,8 @@ html, body {
   background-image:
     linear-gradient(to right, rgba(107,202,168,0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(107,202,168,0.05) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 80% 80% at 30% 40%, #000 35%, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 30% 40%, #000 35%, transparent 85%);
+  background-size: 32px 32px;
+  opacity: 0.5; /* Fade grid instead of using CPU-heavy mask-image */
   pointer-events: none;
   z-index: 0;
 }
@@ -494,7 +480,7 @@ html, body {
 /* ===== HERO LEFT ===== */
 .hero-left { min-width: 0; }
 .hero-left > *, .hero-right {
-  will-change: transform, opacity; /* Force hardware acceleration for GSAP */
+  /* GSAP handles transform/opacity natively. Removing will-change fixes Safari memory exhaustion. */
 }
 
 .hero-eyebrow {
