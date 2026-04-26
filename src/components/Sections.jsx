@@ -3,6 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { SecIcon } from './Icons';
+import FaqGraphic from './FaqGraphic';
 
 // ============ PLACEHOLDER AVATARS ============
 const TAvatar = ({ hue }) => {
@@ -349,19 +350,24 @@ function FAQ() {
   return (
     <section className="section-wrap" id="faq">
       <div className="section">
-        <div className="section-inner">
-          <div className="sec-eyebrow">Questions</div>
-          <h2 className="sec-title">The things everyone asks <span className="accent">before the call.</span></h2>
-          <div className="faq-list">
-            {items.map((it, i) => (
-              <div key={i} className={`faq-item ${open === i ? 'open' : ''}`}>
-                <button className="faq-q" onClick={() => setOpen(open === i ? -1 : i)}>
-                  <span>{it.q}</span>
-                  <SecIcon.Plus/>
-                </button>
-                <div className="faq-a">{it.a}</div>
-              </div>
-            ))}
+        <div className="section-inner faq-layout">
+          <div className="faq-left">
+            <div className="sec-eyebrow">Questions</div>
+            <h2 className="sec-title">The things everyone asks <span className="accent">before the call.</span></h2>
+            <div className="faq-list">
+              {items.map((it, i) => (
+                <div key={i} className={`faq-item ${open === i ? 'open' : ''}`}>
+                  <button className="faq-q" onClick={() => setOpen(open === i ? -1 : i)}>
+                    <span>{it.q}</span>
+                    <SecIcon.Plus/>
+                  </button>
+                  <div className="faq-a">{it.a}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="faq-right">
+            <FaqGraphic />
           </div>
         </div>
       </div>
