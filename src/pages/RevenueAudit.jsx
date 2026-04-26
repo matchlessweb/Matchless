@@ -75,20 +75,6 @@ export default function RevenueAudit() {
     }
   };
 
-  if (status === 'success') {
-    return (
-      <div className="page page-audit">
-        <div className="audit-success-container">
-          <div className="audit-success-icon"><Icon.Check /></div>
-          <h2>Application Received</h2>
-          <p>Thank you, {formData.name.split(' ')[0] || 'there'}. We have received your application.</p>
-          <p>We are reviewing your website now and will send your custom video teardown to <strong>{formData.email}</strong> within 48 hours.</p>
-          <a href="/" className="btn btn-ghost" style={{ marginTop: '32px' }}>Return to home</a>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="page page-audit">
       <div className="audit-layout">
@@ -118,76 +104,86 @@ export default function RevenueAudit() {
         </div>
 
         <div className="audit-form-container">
-          <form className="audit-form" onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="name">Full Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                required 
-                placeholder="John Doe"
-                value={formData.name}
-                onChange={e => setFormData({...formData, name: e.target.value})}
-              />
+          {status === 'success' ? (
+            <div className="audit-success-container">
+              <div className="audit-success-icon"><Icon.Check /></div>
+              <h2>Application Received</h2>
+              <p>Thank you, {formData.name.split(' ')[0] || 'there'}. We have received your application.</p>
+              <p>We are reviewing your website now and will send your custom video teardown to <strong>{formData.email}</strong> within 48 hours.</p>
+              <button onClick={() => setStatus('idle')} className="btn btn-ghost" style={{ marginTop: '32px' }}>Submit another</button>
             </div>
-            
-            <div className="form-group">
-              <label htmlFor="email">Email Address</label>
-              <input 
-                type="email" 
-                id="email" 
-                required 
-                placeholder="john@yourcompany.com"
-                value={formData.email}
-                onChange={e => setFormData({...formData, email: e.target.value})}
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="url">Website URL</label>
-              <input 
-                type="url" 
-                id="url" 
-                required 
-                placeholder="https://yourcompany.com"
-                value={formData.url}
-                onChange={e => setFormData({...formData, url: e.target.value})}
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="bottleneck">What is your biggest current bottleneck?</label>
-              <div className="select-wrapper">
-                <select 
-                  id="bottleneck" 
-                  required
-                  value={formData.bottleneck}
-                  onChange={e => setFormData({...formData, bottleneck: e.target.value})}
-                >
-                  <option value="" disabled>Select an option...</option>
-                  {bottleneckOptions.map(opt => (
-                    <option key={opt} value={opt}>{opt}</option>
-                  ))}
-                </select>
-                <div className="select-arrow"><Icon.ChevronDown /></div>
+          ) : (
+            <form className="audit-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="name">Full Name</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  required 
+                  placeholder="John Doe"
+                  value={formData.name}
+                  onChange={e => setFormData({...formData, name: e.target.value})}
+                />
               </div>
-            </div>
-
-            {status === 'error' && (
-              <div className="form-error-alert">
-                {errorMessage}
+              
+              <div className="form-group">
+                <label htmlFor="email">Email Address</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  required 
+                  placeholder="john@yourcompany.com"
+                  value={formData.email}
+                  onChange={e => setFormData({...formData, email: e.target.value})}
+                />
               </div>
-            )}
 
-            <button 
-              type="submit" 
-              className={`btn btn-primary btn-full ${status === 'submitting' ? 'loading' : ''}`}
-              disabled={status === 'submitting'}
-            >
-              {status === 'submitting' ? 'Submitting...' : 'Request Free Teardown'}
-            </button>
-            <p className="form-disclaimer">No credit card required. No commitment. Just extreme value.</p>
-          </form>
+              <div className="form-group">
+                <label htmlFor="url">Website URL</label>
+                <input 
+                  type="url" 
+                  id="url" 
+                  required 
+                  placeholder="https://yourcompany.com"
+                  value={formData.url}
+                  onChange={e => setFormData({...formData, url: e.target.value})}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="bottleneck">What is your biggest current bottleneck?</label>
+                <div className="select-wrapper">
+                  <select 
+                    id="bottleneck" 
+                    required
+                    value={formData.bottleneck}
+                    onChange={e => setFormData({...formData, bottleneck: e.target.value})}
+                  >
+                    <option value="" disabled>Select an option...</option>
+                    {bottleneckOptions.map(opt => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                  <div className="select-arrow"><Icon.ChevronDown /></div>
+                </div>
+              </div>
+
+              {status === 'error' && (
+                <div className="form-error-alert">
+                  {errorMessage}
+                </div>
+              )}
+
+              <button 
+                type="submit" 
+                className={`btn btn-primary btn-full ${status === 'submitting' ? 'loading' : ''}`}
+                disabled={status === 'submitting'}
+              >
+                {status === 'submitting' ? 'Submitting...' : 'Request Free Teardown'}
+              </button>
+              <p className="form-disclaimer">No credit card required. No commitment. Just extreme value.</p>
+            </form>
+          )}
         </div>
       </div>
     </div>
