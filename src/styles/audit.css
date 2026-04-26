@@ -18,10 +18,10 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to right, rgba(107,202,168,0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(107,202,168,0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(107,202,168,0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(107,202,168,0.1) 1px, transparent 1px);
   background-size: 56px 56px;
-  opacity: 0.5; /* Fade grid instead of using CPU-heavy mask-image */
+  opacity: 1; /* Made more prominent */
   pointer-events: none;
   z-index: 0;
 }
