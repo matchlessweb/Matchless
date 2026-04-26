@@ -6,6 +6,8 @@
   padding-top: 180px;
   padding-bottom: 120px;
   min-height: 100vh;
+  position: relative;
+  z-index: 2;
 }
 
 .faq-page-header {
