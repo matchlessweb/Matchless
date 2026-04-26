@@ -350,7 +350,7 @@ function FAQ() {
   return (
     <section className="section-wrap" id="faq">
       <div className="section">
-        <div className="section-inner faq-layout">
+        <div className="section-inner home-faq-layout">
           <div className="faq-left">
             <div className="sec-eyebrow">Questions</div>
             <h2 className="sec-title">The things everyone asks <span className="accent">before the call.</span></h2>

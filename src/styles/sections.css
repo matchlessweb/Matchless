@@ -477,7 +477,7 @@
 .testimonial-role { font-size: 13px; color: #8F8C83; margin-top: 2px; }
 
 /* ===== FAQ ===== */
-.faq-layout {
+.home-faq-layout {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 80px;
@@ -485,7 +485,7 @@
 }
 
 @media (max-width: 960px) {
-  .faq-layout {
+  .home-faq-layout {
     grid-template-columns: 1fr;
     gap: 64px;
   }
