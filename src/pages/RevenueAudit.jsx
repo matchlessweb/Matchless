@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Icon } from '../components/Icons';
+import LeakyBucket from '../components/LeakyBucket';
 import '../styles/audit.css';
 
 const FORM_UUID = '935a03a5-135a-4648-8296-260dd136f121';
@@ -92,6 +93,7 @@ export default function RevenueAudit() {
     <div className="page page-audit">
       <div className="audit-layout">
         <div className="audit-content">
+          <LeakyBucket />
           <div className="sec-eyebrow">Local Service Businesses</div>
           <h1 className="hero-title">You are leaking revenue.<br/><span className="accent">Let's find out where.</span></h1>
           <p className="hero-sub" style={{ marginTop: '24px' }}>
