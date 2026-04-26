@@ -160,7 +160,8 @@
     background: rgba(10, 15, 13, 0.95);
     padding: 16px 24px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
-    /* Remove padding to allow full bleed scroll if needed, but keeping it simple here */
+    min-width: 0; /* Prevents intrinsic width of pills from blowing out the grid */
+    width: 100%;
   }
 
   .faq-sidebar-inner {
