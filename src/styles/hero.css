@@ -925,8 +925,6 @@ html, body {
    devices, letting the clean background gradients take over.
    ========================================================= */
 @supports (-webkit-hyphens:none) {
-  .ribbons { display: none !important; }
-  .vortex { display: none !important; }
   .panel { animation: none !important; }
   .nav { backdrop-filter: none !important; background: rgba(10, 15, 13, 0.95) !important; }
 }

@@ -1,20 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 
 export default function BraidBackground() {
-  const [isMobile, setIsMobile] = useState(() => {
-    return typeof window !== 'undefined' ? window.innerWidth <= 1100 : false;
-  });
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 1100);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  if (isMobile) return null;
+  const containerRef = useRef(null);
 
   return (
-    <div className="ribbons" aria-hidden="true">
+    <div className="ribbons" aria-hidden="true" ref={containerRef}>
       <svg viewBox="0 0 1440 3000" preserveAspectRatio="none">
         <defs>
           <linearGradient id="rb-1" x1="0" y1="0" x2="0" y2="1">
