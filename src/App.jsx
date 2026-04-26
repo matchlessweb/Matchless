@@ -9,6 +9,7 @@ import Solutions from './pages/Solutions';
 import CaseStudies from './pages/CaseStudies';
 import CaseStudy from './pages/CaseStudy';
 import FAQ from './pages/FAQ';
+import RevenueAudit from './pages/RevenueAudit';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="case-studies" element={<CaseStudies />} />
         <Route path="case-study/:slug" element={<CaseStudy />} />
         <Route path="faq" element={<FAQ />} />
+        <Route path="revenue-audit" element={<RevenueAudit />} />
       </Route>
     </Routes>
   );

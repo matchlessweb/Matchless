@@ -1,0 +1,250 @@
+/* =========================================
+   REVENUE AUDIT PAGE STYLES
+   ========================================= */
+
+.page-audit {
+  min-height: 100vh;
+  padding-top: 160px;
+  padding-bottom: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.audit-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 480px;
+  gap: 80px;
+  align-items: center;
+  z-index: 10;
+}
+
+.audit-content {
+  max-width: 600px;
+}
+
+.audit-content .hero-title {
+  margin-top: 24px;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.1;
+}
+
+.audit-content .hero-sub {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #9F9C93;
+}
+
+.audit-value-props {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.audit-vp {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: #F0ECE4;
+  font-weight: 500;
+}
+
+.vp-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(107, 202, 168, 0.15);
+  color: var(--mw-green-400);
+  flex-shrink: 0;
+}
+
+.vp-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* --- Form Container --- */
+.audit-form-container {
+  background: rgba(10, 15, 13, 0.7);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 40px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.audit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #F0ECE4;
+}
+
+.form-group input, 
+.form-group select {
+  width: 100%;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: #fff;
+  transition: all 200ms ease;
+  appearance: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: rgba(107, 202, 168, 0.5);
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 0 0 4px rgba(107, 202, 168, 0.1);
+}
+
+.form-group input::placeholder {
+  color: #555;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #9F9C93;
+}
+
+.select-arrow svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-full {
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.form-error-alert {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-disclaimer {
+  text-align: center;
+  font-size: 12.5px;
+  color: #666;
+  margin: 0;
+}
+
+/* --- Success State --- */
+.audit-success-container {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  background: rgba(10, 15, 13, 0.7);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 60px 40px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.audit-success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(107, 202, 168, 0.15);
+  color: var(--mw-green-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+.audit-success-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.audit-success-container h2 {
+  font-size: 28px;
+  color: #fff;
+  margin: 0 0 16px;
+}
+
+.audit-success-container p {
+  color: #9F9C93;
+  line-height: 1.6;
+  font-size: 15px;
+  margin: 0 0 12px;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 960px) {
+  .page-audit {
+    padding-top: 120px;
+  }
+  
+  .audit-layout {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 0 24px;
+  }
+
+  .audit-content {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .audit-value-props {
+    align-items: center;
+  }
+
+  .audit-vp {
+    text-align: left;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .audit-form-container {
+    padding: 32px 24px;
+  }
+}
