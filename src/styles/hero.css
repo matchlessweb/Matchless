@@ -128,7 +128,7 @@ html, body {
   color: var(--fg-on-dark);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  /* Removed text-rendering: optimizeLegibility; which causes extreme Safari freezes on large pages */
 }
 
 .bg-flow-veil {

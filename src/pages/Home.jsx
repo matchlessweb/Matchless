@@ -117,21 +117,20 @@ function Panel() {
 function Hero() {
   const heroRef = useRef(null);
 
-  // TEMPORARILY DISABLED FOR SAFARI DIAGNOSTICS
-  // useGSAP(() => {
-  //   gsap.fromTo(".hero-left > *, .hero-right", 
-  //     { y: 30, opacity: 0 },
-  //     {
-  //       y: 0,
-  //       opacity: 1,
-  //       duration: 0.6,
-  //       stagger: 0.05,
-  //       ease: "power3.out",
-  //       delay: 0.15,
-  //       clearProps: "all"
-  //     }
-  //   );
-  // }, { scope: heroRef });
+  useGSAP(() => {
+    gsap.fromTo(".hero-left > *, .hero-right", 
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.05,
+        ease: "power3.out",
+        delay: 0.15,
+        clearProps: "all"
+      }
+    );
+  }, { scope: heroRef });
 
   const T = {
     accentWord: "revenue.",
