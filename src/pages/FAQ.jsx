@@ -38,7 +38,13 @@ const faqData = [
       },
       {
         q: "Do you require a long-term retainer?",
-        a: "No. Our core deliverable is the Client Acquisition System, which is a fixed-price project. However, many clients retain us post-launch for ongoing conversion rate optimization (CRO), SEO, and scaling. These retainers are completely optional and run month-to-month."
+        a: (
+          <>
+            <p>Our core deliverable is the Client Acquisition System, which is a fixed-price project with a very affordable monthly retainer to maintain the systems, security, software updates, and functionality. If anything ever breaks or needs a tweak and the issue is on our end, you don't pay anything for it to be edited. If you need changes from month to month and it takes less than 30 minutes of our time, you get a discounted hourly rate on that work.</p>
+            <p style={{ marginTop: '16px' }}>However, many serious clients retain us post-launch for ongoing conversion rate optimization (CRO), SEO, and scaling. These retainers are completely optional and run month-to-month after a 3-month minimum commitment to test baseline performance and assess iterations needed for future success and continued growth.</p>
+            <p style={{ marginTop: '16px' }}>Clients who opt for a growth retainer see the best results over time.</p>
+          </>
+        )
       },
       {
         q: "What is the payment schedule?",

@@ -8,6 +8,7 @@
   min-height: 100vh;
   position: relative;
   z-index: 2;
+  overflow: visible !important; /* Overrides .page's overflow-x: hidden which breaks sticky */
 }
 
 .faq-page-header {
