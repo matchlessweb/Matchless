@@ -77,7 +77,13 @@ const faqData = [
       },
       {
         q: "Who owns the code and assets?",
-        a: "You do. Upon final payment, 100% of the IP, code repositories, design files, and operational assets are transferred to your ownership. No hostage situations."
+        a: (
+          <>
+            <p>You do. 100% of the intellectual property, code repositories, design files, and operational assets belong to you.</p>
+            <p style={{ marginTop: '16px' }}>For as long as we are maintaining the project post-launch, we host the website and manage the codebase on your behalf to ensure maximum security, performance, and uptime.</p>
+            <p style={{ marginTop: '16px' }}>However, should you ever decide it's in your best interest to part ways, there are no hostage situations. We include a <strong>"Heaven Forbid It Break-Up Plan"</strong> directly in our contract. If we need to go our separate ways, there are no hard feelings. We execute a seamless transfer of all assets and codebase control back to you, setting you up for success to manage things internally or with another vendor.</p>
+          </>
+        )
       },
       {
         q: "What if I just need a landing page, not the whole system?",
