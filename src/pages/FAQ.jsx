@@ -48,7 +48,14 @@ const faqData = [
       },
       {
         q: "What is the payment schedule?",
-        a: "Standard engagements are 50% upfront to commence the build, and 50% upon final deployment. For larger builds scaling over 8 weeks, we can structure milestone-based payments."
+        a: (
+          <>
+            <p>We offer two payment structures designed to eliminate administrative friction and keep project timelines tight:</p>
+            <p style={{ marginTop: '12px' }}><strong>1. Paid in Full:</strong> 100% upfront payment, which includes a discount on the total project value.</p>
+            <p style={{ marginTop: '12px' }}><strong>2. 50/50 Split:</strong> A 50% deposit is required to commence work. The remaining 50% is automatically collected via a prior authorization agreement exactly 30 days after the project kickoff.</p>
+            <p style={{ marginTop: '16px' }}>No work begins until the initial payment or authorization is established. In our experience, this structure ensures that both teams remain fully focused on execution and getting the project across the finish line.</p>
+          </>
+        )
       }
     ]
   },
