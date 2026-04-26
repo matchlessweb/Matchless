@@ -110,7 +110,7 @@
   min-height: 100vh;
   background: #0A0F0D;
   color: #F0ECE4;
-  overflow-x: hidden;
+  overflow-x: clip; /* clip instead of hidden to preserve position: sticky globally */
 }
 /* Keep nav/content above ribbons */
 .nav, .hero-wrap, .section-wrap, .footer { position: relative; z-index: 2; }
@@ -259,7 +259,7 @@ html, body {
   min-height: 100vh;
   background: #0A0F0D;
   color: #F0ECE4;
-  overflow-x: hidden;
+  overflow-x: clip; /* clip instead of hidden to preserve position: sticky globally */
 }
 /* Nav + content sit above flow */
 .nav, .hero-wrap, .section-wrap, .footer { position: relative; z-index: 2; }
