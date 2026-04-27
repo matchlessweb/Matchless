@@ -1,0 +1,99 @@
+.data-flow-container {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  display: none;
+}
+
+@media (max-width: 1080px) {
+  .data-flow-container {
+    display: block;
+    top: 60px;
+    right: 20px;
+    width: 200px;
+    height: 150px;
+    opacity: 0.8;
+  }
+}
+
+@media (max-width: 720px) {
+  .data-flow-container {
+    width: 160px;
+    height: 120px;
+    top: 60px;
+    right: 16px;
+    opacity: 0.8;
+  }
+}
+
+.data-line {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: draw-line 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.data-fill {
+  opacity: 0;
+  animation: fade-fill 1.5s ease-out 1.5s forwards;
+}
+
+.chart-node {
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: center;
+}
+
+.node-1 { animation: pop-node 0.4s ease-out 0.6s forwards; transform-origin: 40px 100px; }
+.node-2 { animation: pop-node 0.4s ease-out 1.2s forwards; transform-origin: 80px 110px; }
+.node-3 { animation: pop-node 0.4s ease-out 1.8s forwards; transform-origin: 130px 50px; }
+.node-4 { animation: pop-node 0.4s ease-out 2.2s forwards; transform-origin: 160px 60px; }
+
+.chart-pulse-node {
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: 190px 20px;
+  animation: pop-node 0.4s ease-out 2.8s forwards;
+}
+
+.chart-pulse-ring {
+  opacity: 0;
+  transform-origin: 190px 20px;
+  animation: ring-pulse 2.5s ease-out 3.2s infinite;
+}
+
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fade-fill {
+  to {
+    opacity: 0.6;
+  }
+}
+
+@keyframes pop-node {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  60% {
+    transform: scale(1.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes ring-pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { TechStackSVG } from '../components/TechStackSVG';
+import { DataFlowSVG } from '../components/DataFlowSVG';
 
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -202,7 +202,7 @@ function Hero() {
           </div>
         </div>
 
-        <TechStackSVG />
+        <DataFlowSVG />
         <div className="hero-scroll" aria-hidden="true">
           <Icon.ChevronDown/>
         </div>
