@@ -141,7 +141,7 @@ function Guide() {
               <div className="sec-eyebrow">Meet Your Guide</div>
               <h2 className="sec-title">We've shipped the system <span className="accent">so you don't have to.</span></h2>
               <p className="sec-lead">
-                We're a two-person studio of operators who've built and scaled revenue systems for B2B companies and high-growth small businesses. We know what converts, what breaks, and what to ignore. You hand off the website — we run the protocol.
+                We're a two-person studio of operators who've built and scaled revenue systems for B2B companies and high-growth small businesses. We know what converts, what breaks, and what to ignore. You hand off the website — we build the engine.
               </p>
               <div className="guide-stats">
                 <div className="stat">
@@ -375,7 +375,7 @@ function FAQ() {
   const [open, setOpen] = React.useState(0);
   const items = [
     { q: "How long does a typical engagement take?", a: "Most Client Acquisition Systems ship in 3–6 weeks from kickoff. You'll have a first milestone live inside 14 days, and the full system deployed before most agencies have finished their discovery phase." },
-    { q: "Do you work with businesses outside B2B?", a: "We focus on high-growth small businesses and B2B companies because that's where our protocols convert best. If you're a B2C brand doing significant revenue, book a call — we'll tell you honestly whether we're the right fit." },
+    { q: "Do you work with businesses outside B2B?", a: "We focus on high-growth small businesses and B2B companies because that's where our systems convert best. If you're a B2C brand doing significant revenue, book a call — we'll tell you honestly whether we're the right fit." },
     { q: "What if I already have a website?", a: "Most of our clients do. We audit what's working, preserve what converts, and rebuild the parts that don't. You don't start from zero — you start from better." },
     { q: "What does pricing look like?", a: "Engagements typically run between $15K–$60K depending on scope. We'll scope exactly what you need on the discovery call, with no pressure to commit." },
     { q: "Who actually does the work?", a: "We're a studio of two operators — not a subcontractor network. You work directly with the people designing and shipping your system." },
