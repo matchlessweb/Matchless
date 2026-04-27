@@ -163,12 +163,12 @@ function Guide() {
             </div>
             <div className="dash">
               <div className="dash-head">
-                <div className="dash-title"><span className="dash-dot"/> Revenue Protocol — Live</div>
+                <div className="dash-title"><span className="dash-dot"/> Acquisition System — Live</div>
                 <div className="dash-range">LAST 30 DAYS</div>
               </div>
               <div className="dash-metric">
-                <div className="dash-big">$148,420</div>
-                <div className="dash-delta">▲ 32.4%</div>
+                <div className="dash-big">+115%</div>
+                <div className="dash-delta">▲ Lead Volume</div>
               </div>
               <div className="dash-chart">
                 <svg viewBox="0 0 320 140">
