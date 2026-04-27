@@ -31,7 +31,6 @@ function AboutHero() {
     <section className="about-hero section-wrap hero-grid-bg" ref={heroRef}>
       <div className="about-hero-inner">
         <div className="hero-eyebrow">
-          <span className="hero-eyebrow-dot" />
           <span className="hero-eyebrow-text">About Matchless</span>
           <span className="hero-eyebrow-divider" />
           <span className="hero-eyebrow-link">Clinton, MS · 20+ five-star reviews</span>
