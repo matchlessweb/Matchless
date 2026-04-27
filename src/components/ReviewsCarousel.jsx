@@ -45,6 +45,11 @@ export default function ReviewsCarousel() {
               </div>
               <blockquote className="about-review-quote">"{r.quote}"</blockquote>
               <div className="about-review-meta">
+                {r.avatar ? (
+                  <img src={r.avatar} alt={`${r.name} avatar`} style={{width: 32, height: 32, borderRadius: '50%', objectFit: 'cover'}} />
+                ) : (
+                  <div style={{width: 32, height: 32, borderRadius: '50%', backgroundColor: 'var(--mw-green-400)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontWeight: 'bold', fontSize: '14px', flexShrink: 0}}>{r.name.charAt(0)}</div>
+                )}
                 <span className="about-review-name">{r.name}</span>
                 <span className="about-review-dot">·</span>
                 <span className="about-review-date">{r.date}</span>

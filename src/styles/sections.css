@@ -262,7 +262,12 @@
   position: relative;
   z-index: 1;
   padding: 32px 28px;
-  background: linear-gradient(180deg, #152019 0%, #111912 100%);
+  background:
+    radial-gradient(ellipse 120% 100% at 50% 0%,
+      rgba(24,35,30,0.96) 0%,
+      rgba(24,35,30,0.88) 60%,
+      rgba(24,35,30,0) 100%),
+    rgba(15,22,19,0.3);
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: 20px;
   text-align: left;
@@ -436,7 +441,12 @@
   margin-top: 48px;
 }
 .testimonial {
-  background: linear-gradient(180deg, #152019 0%, #111912 100%);
+  background:
+    radial-gradient(ellipse 120% 100% at 50% 0%,
+      rgba(24,35,30,0.96) 0%,
+      rgba(24,35,30,0.88) 60%,
+      rgba(24,35,30,0) 100%),
+    rgba(15,22,19,0.3);
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: 22px;
   padding: 32px;

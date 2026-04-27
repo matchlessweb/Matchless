@@ -303,7 +303,7 @@ function Stakes() {
 }
 
 // ============ TESTIMONIALS ============
-function TruncatedReview({ quote, name, date, hue }) {
+function TruncatedReview({ quote, name, date, hue, avatar }) {
   const [expanded, setExpanded] = React.useState(false);
   const maxLength = 140;
   
@@ -324,7 +324,13 @@ function TruncatedReview({ quote, name, date, hue }) {
         )}
       </p>
       <div className="testimonial-meta">
-        <div className="testimonial-avatar"><TAvatar hue={hue}/></div>
+        <div className="testimonial-avatar">
+          {avatar ? (
+            <img src={avatar} alt={`${name} avatar`} style={{width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover'}} />
+          ) : (
+            <TAvatar hue={hue}/>
+          )}
+        </div>
         <div>
           <div className="testimonial-name">{name}</div>
           <div className="testimonial-role">{date}</div>
@@ -352,6 +358,7 @@ function Testimonials() {
                 quote={r.quote} 
                 name={r.name} 
                 date={r.date} 
+                avatar={r.avatar}
                 hue={hues[i % hues.length]} 
               />
             ))}
