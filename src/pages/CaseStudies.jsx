@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { Icon } from '../components/Icons';
 import { caseStudies } from '../data/caseStudies';
+import ReviewsCarousel from '../components/ReviewsCarousel';
 
 export default function CaseStudies() {
   const [filter, setFilter] = useState('All');
@@ -25,8 +26,9 @@ export default function CaseStudies() {
   }, { scope: gridRef, dependencies: [filter] }); // Re-run animation when filter changes
 
   return (
-    <div className="case-studies-archive">
-      <div className="case-studies-header">
+    <>
+      <div className="case-studies-archive">
+        <div className="case-studies-header">
         <h1 className="mw-h1">Featured <span className="mw-display--accent">Work</span></h1>
         <p className="mw-lead">
           Explore our recent projects and see how we help businesses scale with custom web architectures.
@@ -69,5 +71,7 @@ export default function CaseStudies() {
         ))}
       </div>
     </div>
+    <ReviewsCarousel />
+    </>
   );
 }

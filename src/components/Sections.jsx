@@ -4,6 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { SecIcon } from './Icons';
 import FaqGraphic from './FaqGraphic';
+import { REVIEWS } from '../data/reviews';
 
 // ============ PLACEHOLDER AVATARS ============
 const TAvatar = ({ hue }) => {
@@ -302,32 +303,57 @@ function Stakes() {
 }
 
 // ============ TESTIMONIALS ============
+function TruncatedReview({ quote, name, date, hue }) {
+  const [expanded, setExpanded] = React.useState(false);
+  const maxLength = 140;
+  
+  const isLong = quote.length > maxLength;
+  const displayText = expanded || !isLong ? quote : `${quote.substring(0, maxLength)}...`;
+  
+  return (
+    <div className="testimonial">
+      <p className="testimonial-quote">
+        {displayText}
+        {isLong && (
+          <button 
+            onClick={() => setExpanded(!expanded)} 
+            className="read-more-btn"
+          >
+            {expanded ? " Read less" : " Read more"}
+          </button>
+        )}
+      </p>
+      <div className="testimonial-meta">
+        <div className="testimonial-avatar"><TAvatar hue={hue}/></div>
+        <div>
+          <div className="testimonial-name">{name}</div>
+          <div className="testimonial-role">{date}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Testimonials() {
-  const quotes = [
-    { quote: "We stopped losing Mondays to website fires. Three months in, inbound leads were up 3x and I was finally back to running the company.", name: "Alex Rinaldi", role: "Founder, Northwing Logistics", hue: "warm" },
-    { quote: "The team shipped in weeks what our last agency promised in six months. The funnel alone paid for the whole engagement inside a quarter.", name: "Priya Shah", role: "COO, Harbor Insights", hue: "cool" },
-    { quote: "I used to dread opening our analytics. Now the dashboard is a scorecard I actually enjoy checking every morning.", name: "Marcus Webb", role: "CEO, Tessera Group", hue: "earth" },
-    { quote: "They didn't just build a site — they handed us a system. Our team got a week of their life back, every week.", name: "Jordan Okafor", role: "Director, Fieldnote Studio", hue: "deep" },
-  ];
+  const displayReviews = REVIEWS.slice(0, 4);
+  const hues = ["warm", "cool", "earth", "deep"];
+
   return (
     <section className="section-wrap" id="testimonials">
       <div className="section">
         <div className="section-inner">
           <div className="sec-eyebrow">Proof</div>
-          <h2 className="sec-title">Operators who stopped <span className="accent">running their website.</span></h2>
-          <p className="sec-lead">A few words from founders who handed it off.</p>
+          <h2 className="sec-title">Client <span className="accent">Testimonials.</span></h2>
+          <p className="sec-lead">A few words from the people we've partnered with.</p>
           <div className="testimonials-grid">
-            {quotes.map((q, i) => (
-              <div key={i} className="testimonial">
-                <p className="testimonial-quote">{q.quote}</p>
-                <div className="testimonial-meta">
-                  <div className="testimonial-avatar"><TAvatar hue={q.hue}/></div>
-                  <div>
-                    <div className="testimonial-name">{q.name}</div>
-                    <div className="testimonial-role">{q.role}</div>
-                  </div>
-                </div>
-              </div>
+            {displayReviews.map((r, i) => (
+              <TruncatedReview 
+                key={i} 
+                quote={r.quote} 
+                name={r.name} 
+                date={r.date} 
+                hue={hues[i % hues.length]} 
+              />
             ))}
           </div>
         </div>
