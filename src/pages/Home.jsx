@@ -87,7 +87,7 @@ function Panel() {
   return (
     <div className="panel">
       <div className="panel-avatars">
-        {REVIEWS.filter(r => ["Joel Bomgar", "CJ Stewart", "Ashley Upchurch"].includes(r.name)).map(r => (
+        {REVIEWS.filter(r => ["Joel Bomgar", "CJ Stewart", "Tonya Eubanks"].includes(r.name)).map(r => (
           <div className="panel-avatar" key={r.name}>
             <img src={r.avatar} alt={r.name} style={{width:'100%', height:'100%', borderRadius:'50%', objectFit:'cover'}} onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
             <div style={{width:'100%', height:'100%', borderRadius:'50%', backgroundColor: 'var(--mw-green-400)', display: 'none', alignItems: 'center', justifyContent: 'center', color: '#000', fontWeight: 'bold', fontSize: '16px'}}>{r.name.charAt(0)}</div>
@@ -173,15 +173,17 @@ function Hero() {
             </h1>
 
             <p className="hero-sub">
-              Deep insights, creative velocity, and full execution.<br/>
-              All powered by engineered web architectures.
+              High-performance digital engines that consistently attract,<br/>
+              capture, and convert your ideal clients on autopilot.
             </p>
 
             <div className="hero-divider"/>
 
             <div className="hero-proof">
               <div style={{display:'flex', alignItems:'center', gap:14}}>
-                <span className="proof-avatar"><AvatarProof/></span>
+                <span className="proof-avatar">
+                  <img src={REVIEWS.find(r => r.name === 'Emily Russ')?.avatar} alt="Emily Russ" style={{width: 48, height: 48, borderRadius: '50%', objectFit: 'cover'}} />
+                </span>
                 <span className="proof-text">
                   <div className="proof-title">200% Growth on Average</div>
                   <div className="proof-sub">B2B &amp; Agencies</div>

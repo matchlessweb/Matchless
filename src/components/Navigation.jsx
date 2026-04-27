@@ -7,7 +7,7 @@ export default function Navigation() {
     <header className="nav">
       <div className="nav-inner">
         <NavLink to="/" className="brand brand--lg" aria-label="Matchless">
-          <img src={matchlessLogo} alt="Matchless" style={{ height: '32px', width: 'auto' }} />
+          <img src={matchlessLogo} alt="Matchless" style={{ height: '40px', width: 'auto' }} />
         </NavLink>
         <nav className="nav-links">
           <NavLink to="/solutions">Solutions</NavLink>

@@ -440,7 +440,7 @@ export function Footer() {
       <div className="footer-top">
         <div className="footer-brand">
           <a href="#" className="brand brand--lg" aria-label="Matchless">
-            <img src={matchlessLogo} alt="Matchless" style={{ height: '32px', width: 'auto' }} />
+            <img src={matchlessLogo} alt="Matchless" style={{ height: '40px', width: 'auto' }} />
           </a>
           <p>Client Acquisition Systems for operators who are done running their website.</p>
         </div>
