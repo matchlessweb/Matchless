@@ -19,7 +19,7 @@ export default function ReviewsCarousel() {
             What clients say
           </div>
           <h2 className="about-section-title">
-            Thirty-plus five-star reviews — <span className="accent">and counting.</span>
+            Twenty-plus five-star reviews — <span className="accent">and counting.</span>
           </h2>
           <p className="about-section-sub">
             Pulled from the Matchless Web Studio Google Business Profile.{' '}

@@ -34,7 +34,7 @@ function AboutHero() {
           <span className="hero-eyebrow-dot" />
           <span className="hero-eyebrow-text">About Matchless</span>
           <span className="hero-eyebrow-divider" />
-          <span className="hero-eyebrow-link">Clinton, MS · 30+ five-star reviews</span>
+          <span className="hero-eyebrow-link">Clinton, MS · 20+ five-star reviews</span>
         </div>
         <h1 className="about-hero-title">
           You need a web <em>consultant</em>,<br />
