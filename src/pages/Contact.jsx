@@ -237,7 +237,7 @@ function ContactBody() {
             <div className="contact-info-icon"><Icon.Calendar/></div>
             <div className="contact-info-body">
               <h4>Book a 15-minute discovery call</h4>
-              <a href="#call" className="contact-info-link">Open calendar →</a>
+              <a href="https://calendly.com/matchlessweb/15" target="_blank" rel="noopener noreferrer" className="contact-info-link">Open Calendly →</a>
               <p className="contact-info-note">Zoom. No sales pitch — you'll leave with two concrete next steps.</p>
             </div>
           </div>
