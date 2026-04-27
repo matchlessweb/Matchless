@@ -5,7 +5,7 @@
   width: 400px;
   height: 300px;
   pointer-events: none;
-  z-index: 0;
+  z-index: 2;
   opacity: 0.8;
   /* Only display on mobile, or keep on desktop but position it differently? 
      The user requested it to fill empty space on mobile. */
@@ -20,8 +20,8 @@
     width: 320px;
     height: 240px;
     opacity: 0.6;
-    /* Move behind everything */
-    z-index: 0;
+    /* Move above the panel */
+    z-index: 2;
   }
 }
 
@@ -29,8 +29,8 @@
   .tech-stack-container {
     width: 280px;
     height: 210px;
-    bottom: -30px;
-    right: -40px;
+    bottom: 120px;
+    right: -30px;
     opacity: 0.5;
   }
 }
