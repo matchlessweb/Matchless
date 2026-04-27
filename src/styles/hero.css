@@ -842,6 +842,11 @@ html, body {
   .nav-links { display: none; }
 }
 @media (max-width: 720px) {
+  /* Restore the grid on mobile by expanding the mask */
+  .hero::before {
+    mask-image: radial-gradient(ellipse 200% 150% at 50% 20%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+    -webkit-mask-image: radial-gradient(ellipse 200% 150% at 50% 20%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+  }
   .hero-wrap { padding: 12px 12px 40px; }
   .hero { padding: 40px 20px; border-radius: 20px; }
   .hero-title { font-size: clamp(40px, 11vw, 64px); }

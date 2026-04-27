@@ -305,6 +305,7 @@ function Stakes() {
 // ============ TESTIMONIALS ============
 function TruncatedReview({ quote, name, date, hue, avatar }) {
   const [expanded, setExpanded] = React.useState(false);
+  const [imgError, setImgError] = React.useState(false);
   const maxLength = 140;
   
   const isLong = quote.length > maxLength;
@@ -325,8 +326,8 @@ function TruncatedReview({ quote, name, date, hue, avatar }) {
       </p>
       <div className="testimonial-meta">
         <div className="testimonial-avatar">
-          {avatar ? (
-            <img src={avatar} alt={`${name} avatar`} style={{width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover'}} />
+          {avatar && !imgError ? (
+            <img src={avatar} alt={`${name} avatar`} onError={() => setImgError(true)} style={{width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover'}} />
           ) : (
             <TAvatar hue={hue}/>
           )}

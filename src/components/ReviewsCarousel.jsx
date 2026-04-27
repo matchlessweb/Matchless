@@ -6,6 +6,7 @@ const GBP_URL = 'https://share.google/hNXTWLyCxsWLwdoiF';
 
 function CarouselReviewCard({ r }) {
   const [expanded, setExpanded] = useState(false);
+  const [imgError, setImgError] = useState(false);
   const maxLength = 140;
   
   const isLong = r.quote.length > maxLength;
@@ -30,8 +31,8 @@ function CarouselReviewCard({ r }) {
         )}
       </blockquote>
       <div className="about-review-meta">
-        {r.avatar ? (
-          <img src={r.avatar} alt={`${r.name} avatar`} style={{width: 32, height: 32, borderRadius: '50%', objectFit: 'cover'}} />
+        {r.avatar && !imgError ? (
+          <img src={r.avatar} alt={`${r.name} avatar`} onError={() => setImgError(true)} style={{width: 32, height: 32, borderRadius: '50%', objectFit: 'cover'}} />
         ) : (
           <div style={{width: 32, height: 32, borderRadius: '50%', backgroundColor: 'var(--mw-green-400)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontWeight: 'bold', fontSize: '14px', flexShrink: 0}}>{r.name.charAt(0)}</div>
         )}
