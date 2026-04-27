@@ -282,16 +282,7 @@
   margin-bottom: 16px;
 }
 .about-review-stars svg { width: 18px; height: 18px; }
-.about-review-quote {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(20px, 2vw, 26px);
-  line-height: 1.35;
-  letter-spacing: -0.015em;
-  color: #F2EEE6;
-  margin: 0 0 20px;
-  text-wrap: pretty;
-}
+
 .about-review-meta {
   display: flex;
   align-items: center;
@@ -393,4 +384,75 @@
 }
 .about-review-stage.is-dragging .about-review-card {
   scroll-snap-align: none;
+}
+
+/* Wrapper for fade mask and absolute arrow */
+.about-review-stage-wrapper {
+  position: relative;
+  /* Add a fade effect on left and right edges */
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  margin-top: 24px;
+}
+
+.about-review-stage {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 20px;
+  padding-bottom: 24px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Adjust text size down */
+.about-review-quote {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(17px, 1.8vw, 19px); /* smaller text */
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: #F2EEE6;
+  margin: 0 0 24px;
+  text-wrap: pretty;
+}
+
+/* Fix flex layout to make sure content pushes meta to bottom if needed, or just standard flex */
+.about-review-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.about-review-meta {
+  margin-top: auto; /* push to bottom so they align nicely */
+}
+
+.carousel-right-arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(15,22,19,0.85);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #F2EEE6;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+  pointer-events: auto; /* ensure clickable despite wrapper mask? wait mask cuts off clicks if outside mask, but arrow is inside 95% */
+}
+.carousel-right-arrow:hover {
+  background: var(--mw-green-400);
+  color: #000;
+}
+@media(max-width: 768px) {
+  .carousel-right-arrow {
+    display: none; /* native swipe is obvious enough on mobile, or we keep it. The user said "on desktop", let's hide on mobile */
+  }
 }
