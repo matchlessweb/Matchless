@@ -1,10 +1,43 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Icon } from './Icons';
 import { REVIEWS } from '../data/reviews';
 
 const GBP_URL = 'https://share.google/hNXTWLyCxsWLwdoiF';
 
 export default function ReviewsCarousel() {
+  const sliderRef = useRef(null);
+  const [isDown, setIsDown] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  const handleMouseDown = (e) => {
+    setIsDown(true);
+    if (!sliderRef.current) return;
+    sliderRef.current.style.cursor = 'grabbing';
+    setStartX(e.pageX - sliderRef.current.offsetLeft);
+    setScrollLeft(sliderRef.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDown(false);
+    if (!sliderRef.current) return;
+    sliderRef.current.style.cursor = 'grab';
+  };
+
+  const handleMouseUp = () => {
+    setIsDown(false);
+    if (!sliderRef.current) return;
+    sliderRef.current.style.cursor = 'grab';
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDown || !sliderRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - sliderRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // scroll speed multiplier
+    sliderRef.current.scrollLeft = scrollLeft - walk;
+  };
+
   return (
     <section className="about-reviews section-wrap">
       <div className="section">
@@ -23,7 +56,15 @@ export default function ReviewsCarousel() {
             </a>
           </p>
 
-          <div className="about-review-stage">
+          <div 
+            className={`about-review-stage ${isDown ? "is-dragging" : ""}`}
+            ref={sliderRef}
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseLeave}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}
+            style={{ cursor: 'grab' }}
+          >
             {REVIEWS.map((r, idx) => (
               <article key={idx} className="about-review-card" aria-live="polite">
                 <div className="about-review-stars" aria-label={`${r.stars} out of 5 stars`}>

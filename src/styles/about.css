@@ -232,10 +232,10 @@
   margin-top: 24px;
   padding-bottom: 24px;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
 }
 .about-review-stage::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
+  display: none;
 }
 .about-review-arrow {
   width: 48px; height: 48px;
@@ -383,12 +383,14 @@
 
 @media (min-width: 768px) {
   .about-review-card {
-    flex: 0 0 calc(50% - 20px);
+    flex: 0 0 380px;
     scroll-snap-align: start;
   }
 }
-@media (min-width: 1024px) {
-  .about-review-card {
-    flex: 0 0 calc(33.333% - 20px);
-  }
+
+.about-review-stage.is-dragging {
+  scroll-snap-type: none;
+}
+.about-review-stage.is-dragging .about-review-card {
+  scroll-snap-align: none;
 }
