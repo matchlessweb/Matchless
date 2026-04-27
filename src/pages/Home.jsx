@@ -87,7 +87,7 @@ function Panel() {
   return (
     <div className="panel">
       <div className="panel-avatars">
-        {REVIEWS.filter(r => ["Joel Bomgar", "Amanda Flynn", "Rene Bishoff"].includes(r.name)).map(r => (
+        {REVIEWS.filter(r => ["Joel Bomgar", "Emily Russ", "Robert Zatorski"].includes(r.name)).map(r => (
           <div className="panel-avatar" key={r.name}>
             <img src={r.avatar} alt={r.name} style={{width:'100%', height:'100%', borderRadius:'50%', objectFit:'cover'}} onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
             <div style={{width:'100%', height:'100%', borderRadius:'50%', backgroundColor: 'var(--mw-green-400)', display: 'none', alignItems: 'center', justifyContent: 'center', color: '#000', fontWeight: 'bold', fontSize: '16px'}}>{r.name.charAt(0)}</div>
