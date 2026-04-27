@@ -99,14 +99,11 @@ const faqData = [
 // ----------------------------------------------------
 export default function FAQ() {
   const [activeCategory, setActiveCategory] = useState(faqData[0].id);
-  const [openItems, setOpenItems] = useState({});
+  const [openItem, setOpenItem] = useState(null);
 
   const toggleItem = (catId, qIndex) => {
     const key = `${catId}-${qIndex}`;
-    setOpenItems(prev => ({
-      ...prev,
-      [key]: !prev[key]
-    }));
+    setOpenItem(prev => prev === key ? null : key);
   };
 
   // Intersection Observer to highlight active category on scroll
@@ -179,7 +176,7 @@ export default function FAQ() {
               
               <div className="faq-list">
                 {cat.questions.map((it, i) => {
-                  const isOpen = openItems[`${cat.id}-${i}`];
+                  const isOpen = openItem === `${cat.id}-${i}`;
                   return (
                     <div key={i} className={`faq-item ${isOpen ? 'open' : ''}`}>
                       <button className="faq-q" onClick={() => toggleItem(cat.id, i)}>
