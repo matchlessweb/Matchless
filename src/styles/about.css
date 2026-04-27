@@ -225,12 +225,17 @@
 .about-reviews-link:hover { color: #F2EEE6; }
 
 .about-review-stage {
-  position: relative;
-  display: grid;
-  grid-template-columns: 48px 1fr 48px;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
   gap: 20px;
-  align-items: center;
-  margin-top: 8px;
+  margin-top: 24px;
+  padding-bottom: 24px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+.about-review-stage::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 .about-review-arrow {
   width: 48px; height: 48px;
@@ -254,6 +259,8 @@
 .about-review-arrow:active { transform: scale(0.97); }
 
 .about-review-card {
+  flex: 0 0 calc(100% - 48px);
+  scroll-snap-align: center;
   padding: 40px 48px;
   border-radius: 20px;
   background:
@@ -360,8 +367,8 @@
   .about-hero-inner { padding: 72px 32px 16px; }
   .about-bio-points { grid-template-columns: 1fr; }
   .about-review-card { padding: 28px 24px; min-height: 240px; }
-  .about-review-stage { grid-template-columns: 40px 1fr 40px; gap: 12px; }
-  .about-review-arrow { width: 40px; height: 40px; font-size: 20px; }
+  
+  
   .about-cta-section { padding: 48px 28px; }
 }
 @media (max-width: 560px) {
@@ -372,4 +379,16 @@
   .about-process-grid { grid-template-columns: 1fr; }
   .about-reviews { padding: 12px 12px; }
   .about-cta { padding: 12px 12px 56px; }
+}
+
+@media (min-width: 768px) {
+  .about-review-card {
+    flex: 0 0 calc(50% - 20px);
+    scroll-snap-align: start;
+  }
+}
+@media (min-width: 1024px) {
+  .about-review-card {
+    flex: 0 0 calc(33.333% - 20px);
+  }
 }
