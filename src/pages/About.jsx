@@ -28,7 +28,7 @@ function AboutHero() {
   }, { scope: heroRef });
 
   return (
-    <section className="about-hero section-wrap" ref={heroRef}>
+    <section className="about-hero section-wrap hero-grid-bg" ref={heroRef}>
       <div className="about-hero-inner">
         <div className="hero-eyebrow">
           <span className="hero-eyebrow-dot" />

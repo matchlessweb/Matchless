@@ -253,6 +253,24 @@ html, body {
   pointer-events: none;
 }
 
+/* Reusable grid background for internal page heroes */
+.hero-grid-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 800px; /* Covers the hero area */
+  background-image:
+    linear-gradient(to right, rgba(107,202,168,0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(107,202,168,0.1) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 120% 100% at 50% 20%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%);
+  mask-image: radial-gradient(ellipse 120% 100% at 50% 20%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%);
+  pointer-events: none;
+  z-index: -1;
+}
+
 /* Page wrapper — relative so .bg-flow can span its full height */
 .page {
   position: relative;

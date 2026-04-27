@@ -44,7 +44,7 @@ export default function Process() {
   }, { scope: containerRef });
 
   return (
-    <div className="process-page" ref={containerRef}>
+    <div className="process-page hero-grid-bg" ref={containerRef}>
       <div className="process-header">
         <div className="sec-eyebrow" style={{ justifyContent: 'center' }}>The Matchless Methodology</div>
         <h1 className="mw-h1" style={{ textWrap: 'balance' }}>A Methodical Process for Predictable&nbsp;Growth.</h1>

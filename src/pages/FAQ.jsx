@@ -134,7 +134,7 @@ export default function FAQ() {
   };
 
   return (
-    <div className="page page-faq">
+    <div className="page page-faq hero-grid-bg">
       <div className="faq-page-header">
         <div className="sec-eyebrow">FAQ</div>
         <h1 className="hero-title">Common questions.<br/>Uncommon clarity.</h1>
