@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SEO from '../components/SEO';
 import { SecIcon, Icon } from '../components/Icons';
 import { FinalCTA } from '../components/Sections';
 
@@ -62,6 +63,11 @@ export default function Solutions() {
 
   return (
     <div className="solutions-page" ref={containerRef}>
+      <SEO 
+        title="Solutions & Services | Matchless Web"
+        description="Explore our solutions, from high-converting website builds and SEO mastery to automated CRM integration and full-funnel architecture."
+        url="/solutions"
+      />
       <div className="solutions-header">
         <div className="sec-eyebrow" style={{ justifyContent: 'center' }}>Engineered For Revenue</div>
         <h1 className="mw-h1">Most Websites Are Dead Ends.</h1>

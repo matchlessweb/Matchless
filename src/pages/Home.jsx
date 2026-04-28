@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import { DataFlowSVG } from '../components/DataFlowSVG';
 import { REVIEWS } from '../data/reviews';
 
@@ -219,6 +220,11 @@ function Hero() {
 export default function Home() {
   return (
     <>
+      <SEO 
+        title="Matchless Web | Client Acquisition Systems"
+        description="High-performance digital engines that consistently attract, capture, and convert your ideal B2B clients on autopilot. Stop playing webmaster and focus on revenue."
+        url="/"
+      />
       <Hero />
       <Problem />
       <Guide />

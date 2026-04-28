@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
+import SEO from '../components/SEO';
 import { Icon } from '../components/Icons';
 import { caseStudies } from '../data/caseStudies';
 import ReviewsCarousel from '../components/ReviewsCarousel';
@@ -27,6 +28,11 @@ export default function CaseStudies() {
 
   return (
     <>
+      <SEO 
+        title="Case Studies | Matchless Web"
+        description="See how B2B businesses and agencies have achieved an average of 200% growth using our proven client acquisition systems."
+        url="/case-studies"
+      />
       <div className="case-studies-archive">
         <div className="case-studies-header">
         <h1 className="mw-h1">Featured <span className="mw-display--accent">Work</span></h1>

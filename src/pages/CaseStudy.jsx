@@ -2,6 +2,7 @@ import { useState, useLayoutEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
+import SEO from '../components/SEO';
 import { Icon } from '../components/Icons';
 import Lightbox from '../components/Lightbox';
 import { caseStudies } from '../data/caseStudies';
@@ -47,6 +48,11 @@ export default function CaseStudy() {
 
   return (
     <div className="case-study-template" ref={containerRef}>
+      <SEO 
+        title={`${study.title} | Matchless Web`}
+        description={study.shortDescription}
+        url={`/case-study/${study.slug}`}
+      />
       <Link to="/case-studies" className="cs-back-link cs-animate">
         <Icon.ArrowLeft size={16} /> Back to Case Studies
       </Link>

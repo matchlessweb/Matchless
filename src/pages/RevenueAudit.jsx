@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Icon } from '../components/Icons';
 import LeakyBucket from '../components/LeakyBucket';
+import SEO from '../components/SEO';
 import '../styles/audit.css';
 
 const FORM_UUID = '935a03a5-135a-4648-8296-260dd136f121';
@@ -77,6 +78,11 @@ export default function RevenueAudit() {
 
   return (
     <div className="page page-audit">
+      <SEO 
+        title="Free Revenue Audit | Matchless Web"
+        description="Request a free revenue audit to uncover bottlenecks in your funnel and learn how to optimize your digital engine for maximum conversion."
+        url="/revenue-audit"
+      />
       <div className="audit-layout">
         <div className="audit-content">
           <LeakyBucket />

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
+import SEO from '../components/SEO';
 import { Icon } from '../components/Icons';
 
 // -------- Contact page hero --------
@@ -297,6 +298,11 @@ function NextSteps() {
 export default function Contact() {
   return (
     <main className="contact-page">
+      <SEO 
+        title="Contact Us | Matchless Web"
+        description="Ready to scale your revenue? Book a 15-minute discovery call with Matchless Web and start building your client acquisition system today."
+        url="/contact"
+      />
       <ContactHero />
       <ContactBody />
       <NextSteps />

@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SEO from '../components/SEO';
 import { SecIcon } from '../components/Icons';
 import { FinalCTA } from '../components/Sections';
 
@@ -45,8 +46,16 @@ export default function Process() {
 
   return (
     <div className="process-page hero-grid-bg" ref={containerRef}>
+      <SEO 
+        title="Our Process | Matchless Web"
+        description="Discover our proven process for building client acquisition systems. From strategy and architecture to deployment, we ship high-converting digital engines fast."
+        url="/process"
+      />
+
       <div className="process-header">
-        <div className="sec-eyebrow" style={{ justifyContent: 'center' }}>The Matchless Methodology</div>
+        <div className="sec-eyebrow" style={{ justifyContent: 'center' }}>
+          <SecIcon.ArrowRight /> The Matchless Methodology
+        </div>
         <h1 className="mw-h1" style={{ textWrap: 'balance' }}>A Methodical Process for Predictable&nbsp;Growth.</h1>
         <p>
           We don't guess. We analyze your market, study your competitors, and build a digital system engineered to position you as the quintessential, obvious choice for your ideal clients.

@@ -2,6 +2,7 @@ import React, { useRef, useState, useLayoutEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
+import SEO from '../components/SEO';
 import { Icon } from '../components/Icons';
 
 const HEADSHOT_URL =
@@ -70,7 +71,7 @@ function BioSection() {
           <div className="about-bio-copy">
             <div className="sec-eyebrow">
               <span className="sec-eyebrow-dot" />
-              The operator behind the work
+              The business owner behind the work
             </div>
             <h2 className="about-bio-title">
               I treat your website like the <span className="accent">revenue tool</span> it should be.
@@ -82,7 +83,7 @@ function BioSection() {
               get clients?"
             </p>
             <p className="about-bio-body">
-              I work directly with founders and operators across Mississippi and beyond.
+              I work directly with founders and business owners across Mississippi and beyond.
               You'll talk to me on the call, in the build, and after launch — not a
               project manager translating between you and a team you've never met.
             </p>
@@ -203,6 +204,11 @@ function AboutCTA() {
 export default function About() {
   return (
     <main className="about-page">
+      <SEO 
+        title="About Us | Matchless Web"
+        description="Learn how Matchless Web builds scalable client acquisition systems, websites, and funnels for B2B businesses and agencies to drive consistent revenue."
+        url="/about"
+      />
       <AboutHero />
       <BioSection />
       <HowIWork />

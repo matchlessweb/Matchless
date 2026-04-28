@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SecIcon, Icon } from '../components/Icons';
+import SEO from '../components/SEO';
 import '../styles/faq.css';
 
 // ----------------------------------------------------
@@ -69,7 +70,7 @@ const faqData = [
       },
       {
         q: "Who actually does the work?",
-        a: "We're a boutique studio of two operators — not a subcontractor network. You work directly with the people designing, writing, and shipping your system."
+        a: "We're a boutique studio of two business owners — not a subcontractor network. You work directly with the people designing, writing, and shipping your system."
       },
       {
         q: "What if I already have a website?",
@@ -135,6 +136,11 @@ export default function FAQ() {
 
   return (
     <div className="page page-faq hero-grid-bg">
+      <SEO 
+        title="FAQ | Matchless Web"
+        description="Got questions? Find answers about our process, timelines, pricing, and how our client acquisition systems deliver measurable ROI."
+        url="/faq"
+      />
       <div className="faq-page-header">
         <div className="sec-eyebrow">FAQ</div>
         <h1 className="hero-title">Common questions.<br/>Uncommon clarity.</h1>
