@@ -181,7 +181,7 @@ function Hero() {
             <div className="hero-proof">
               <div style={{display:'flex', alignItems:'center', gap:14}}>
                 <span className="proof-avatar">
-                  <img src={REVIEWS.find(r => r.name === 'CJ Stewart')?.avatar} alt="CJ Stewart" fetchPriority="high" decoding="sync" style={{width: 48, height: 48, borderRadius: '50%', objectFit: 'cover'}} />
+                  <img src={REVIEWS.find(r => r.name === 'Kelly Jo Riden')?.avatar} alt="Kelly Jo Riden" fetchPriority="high" decoding="sync" style={{width: 48, height: 48, borderRadius: '50%', objectFit: 'cover'}} />
                 </span>
                 <span className="proof-text">
                   <div className="proof-title">200% Growth on Average</div>
