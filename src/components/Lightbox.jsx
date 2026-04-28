@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon, SecIcon } from './Icons';
 
 export default function Lightbox({ images, currentIndex, isOpen, onClose, onNext, onPrev }) {
-  // Handle keyboard navigation
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const minSwipeDistance = 50;
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (!isOpen) return;
@@ -29,8 +31,36 @@ export default function Lightbox({ images, currentIndex, isOpen, onClose, onNext
 
   if (!isOpen || !images || images.length === 0) return null;
 
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEndHandler = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      onNext();
+    }
+    if (isRightSwipe) {
+      onPrev();
+    }
+  };
+
   return (
-    <div className="lightbox-overlay">
+    <div 
+      className="lightbox-overlay"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEndHandler}
+    >
       <button className="lightbox-close" onClick={onClose} aria-label="Close Lightbox">
         <SecIcon.X size={24} />
       </button>
