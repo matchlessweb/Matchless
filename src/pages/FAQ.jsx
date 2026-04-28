@@ -39,6 +39,7 @@ const faqData = [
       },
       {
         q: "Do you require a long-term retainer?",
+        schemaAnswer: "Our core deliverable is the Client Acquisition System, which is a fixed-price project with a very affordable monthly retainer to maintain the systems, security, software updates, and functionality. If anything ever breaks or needs a tweak and the issue is on our end, you don't pay anything for it to be edited. If you need changes from month to month and it takes less than 30 minutes of our time, you get a discounted hourly rate on that work. However, many serious clients retain us post-launch for ongoing conversion rate optimization (CRO), SEO, and scaling. These retainers are completely optional and run month-to-month after a 3-month minimum commitment to test baseline performance and assess iterations needed for future success and continued growth. Clients who opt for a growth retainer see the best results over time.",
         a: (
           <>
             <p>Our core deliverable is the Client Acquisition System, which is a fixed-price project with a very affordable monthly retainer to maintain the systems, security, software updates, and functionality. If anything ever breaks or needs a tweak and the issue is on our end, you don't pay anything for it to be edited. If you need changes from month to month and it takes less than 30 minutes of our time, you get a discounted hourly rate on that work.</p>
@@ -49,6 +50,7 @@ const faqData = [
       },
       {
         q: "What is the payment schedule?",
+        schemaAnswer: "We offer two payment structures designed to eliminate administrative friction and keep project timelines tight: 1. Paid in Full: 100% upfront payment, which includes a discount on the total project value. 2. 50/50 Split: A 50% deposit is required to commence work. The remaining 50% is automatically collected via a prior authorization agreement exactly 30 days after the project kickoff. No work begins until the initial payment or authorization is established.",
         a: (
           <>
             <p>We offer two payment structures designed to eliminate administrative friction and keep project timelines tight:</p>
@@ -78,6 +80,7 @@ const faqData = [
       },
       {
         q: "Who owns the code and assets?",
+        schemaAnswer: "You do. 100% of the intellectual property, code repositories, design files, and operational assets belong to you. For as long as we are maintaining the project post-launch, we host the website and manage the codebase on your behalf to ensure maximum security, performance, and uptime. However, should you ever decide it's in your best interest to part ways, there are no hostage situations. We include a 'Heaven Forbid It Break-Up Plan' directly in our contract. If we need to go our separate ways, there are no hard feelings. We execute a seamless transfer of all assets and codebase control back to you, setting you up for success to manage things internally or with another vendor.",
         a: (
           <>
             <p>You do. 100% of the intellectual property, code repositories, design files, and operational assets belong to you.</p>
@@ -94,13 +97,28 @@ const faqData = [
   }
 ];
 
-
 // ----------------------------------------------------
 // FAQ COMPONENT
 // ----------------------------------------------------
 export default function FAQ() {
   const [activeCategory, setActiveCategory] = useState(faqData[0].id);
   const [openItem, setOpenItem] = useState(null);
+
+  // Build FAQ Schema
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqData.flatMap(cat => 
+      cat.questions.map(q => ({
+        "@type": "Question",
+        "name": q.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": q.schemaAnswer || q.a
+        }
+      }))
+    )
+  };
 
   const toggleItem = (catId, qIndex) => {
     const key = `${catId}-${qIndex}`;
@@ -140,6 +158,7 @@ export default function FAQ() {
         title="FAQ | Matchless Web"
         description="Got questions? Find answers about our process, timelines, pricing, and how our client acquisition systems deliver measurable ROI."
         url="/faq"
+        schema={faqSchema}
       />
       <div className="faq-page-header">
         <div className="sec-eyebrow">FAQ</div>

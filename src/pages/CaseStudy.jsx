@@ -46,12 +46,38 @@ export default function CaseStudy() {
     );
   }
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": study.title,
+    "description": study.shortDescription,
+    "image": study.featuredImage || (study.images && study.images[0]) || "https://matchlessweb.com/og-image.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "Matchless Web",
+      "url": "https://matchlessweb.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Matchless Web",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://matchlessweb.com/og-image.jpg"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://matchlessweb.com/case-study/${study.slug}`
+    }
+  };
+
   return (
     <div className="case-study-template" ref={containerRef}>
       <SEO 
         title={`${study.title} | Matchless Web`}
         description={study.shortDescription}
         url={`/case-study/${study.slug}`}
+        schema={articleSchema}
       />
       <Link to="/case-studies" className="cs-back-link cs-animate">
         <Icon.ArrowLeft size={16} /> Back to Case Studies

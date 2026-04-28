@@ -1,9 +1,10 @@
-import React, { useRef, useState, useLayoutEffect } from 'react';
+import React, { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import SEO from '../components/SEO';
 import { Icon } from '../components/Icons';
+import { localBusinessSchema } from '../data/schemas';
 
 const HEADSHOT_URL =
   'https://matchlessweb.com/wp-content/uploads/2026/01/Jon-Phillips-Headshot-Matchless-Wes-Studio-cropped-1024x986.png';
@@ -205,9 +206,10 @@ export default function About() {
   return (
     <main className="about-page">
       <SEO 
-        title="About Us | Matchless Web"
-        description="Learn how Matchless Web builds scalable client acquisition systems, websites, and funnels for B2B businesses and agencies to drive consistent revenue."
+        title="About | Matchless Web"
+        description="We're a two-person team in Mississippi building high-performance client acquisition systems for service-based businesses who are ready to scale."
         url="/about"
+        schema={localBusinessSchema}
       />
       <AboutHero />
       <BioSection />

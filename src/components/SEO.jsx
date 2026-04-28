@@ -1,10 +1,13 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-export default function SEO({ title, description, image, url }) {
+export default function SEO({ title, description, image, url, schema }) {
   const defaultImage = "https://matchlessweb.com/og-image.jpg";
   const ogImage = image || defaultImage;
   const ogUrl = url ? `https://matchlessweb.com${url}` : "https://matchlessweb.com";
+
+  // Ensure schema is an array so we can map over it (if provided)
+  const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 
   return (
     <Helmet>
@@ -25,6 +28,13 @@ export default function SEO({ title, description, image, url }) {
       {title && <meta name="twitter:title" content={title} />}
       {description && <meta name="twitter:description" content={description} />}
       {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+      {/* JSON-LD Schema Markup */}
+      {schemas.map((s, index) => (
+        <script type="application/ld+json" key={`schema-${index}`}>
+          {JSON.stringify(s)}
+        </script>
+      ))}
     </Helmet>
   );
 }

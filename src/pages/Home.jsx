@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { localBusinessSchema } from '../data/schemas';
 import { DataFlowSVG } from '../components/DataFlowSVG';
 import { REVIEWS } from '../data/reviews';
 
@@ -224,6 +225,7 @@ export default function Home() {
         title="Matchless Web | Client Acquisition Systems"
         description="High-performance digital engines that consistently attract, capture, and convert your ideal B2B clients on autopilot. Stop playing webmaster and focus on revenue."
         url="/"
+        schema={localBusinessSchema}
       />
       <Hero />
       <Problem />
