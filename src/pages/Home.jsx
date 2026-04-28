@@ -87,9 +87,9 @@ function Panel() {
   return (
     <div className="panel">
       <div className="panel-avatars">
-        {REVIEWS.filter(r => ["Joel Bomgar", "Emily Russ", "Robert Zatorski"].includes(r.name)).map(r => (
+        {REVIEWS.filter(r => ["Joel Bomgar", "Emily Russ", "Tanya Eubanks"].includes(r.name)).map(r => (
           <div className="panel-avatar" key={r.name}>
-            <img src={r.avatar} alt={r.name} style={{width:'100%', height:'100%', borderRadius:'50%', objectFit:'cover'}} onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+            <img src={r.avatar} alt={r.name} fetchPriority="high" decoding="sync" style={{width:'100%', height:'100%', borderRadius:'50%', objectFit:'cover'}} onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
             <div style={{width:'100%', height:'100%', borderRadius:'50%', backgroundColor: 'var(--mw-green-400)', display: 'none', alignItems: 'center', justifyContent: 'center', color: '#000', fontWeight: 'bold', fontSize: '16px'}}>{r.name.charAt(0)}</div>
           </div>
         ))}
@@ -181,7 +181,7 @@ function Hero() {
             <div className="hero-proof">
               <div style={{display:'flex', alignItems:'center', gap:14}}>
                 <span className="proof-avatar">
-                  <img src={REVIEWS.find(r => r.name === 'Emily Russ')?.avatar} alt="Emily Russ" style={{width: 48, height: 48, borderRadius: '50%', objectFit: 'cover'}} />
+                  <img src={REVIEWS.find(r => r.name === 'Emily Russ')?.avatar} alt="Emily Russ" fetchPriority="high" decoding="sync" style={{width: 48, height: 48, borderRadius: '50%', objectFit: 'cover'}} />
                 </span>
                 <span className="proof-text">
                   <div className="proof-title">200% Growth on Average</div>
